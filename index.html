@@ -212,10 +212,22 @@
   .programs{padding:110px 0; background:var(--paper);}
   .program-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
   .program-card{
+    position:relative; isolation:isolate; overflow:hidden;
     background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius); padding:28px;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
+  .program-card::before{
+    content:""; position:absolute; inset:0; z-index:-2;
+    background-image:var(--card-img); background-size:cover; background-position:center;
+    opacity:0.16; transition:opacity .3s ease, transform .4s ease;
+    transform:scale(1.02);
+  }
+  .program-card::after{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(150deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.96) 100%);
+  }
   .program-card:hover{transform:translateY(-4px); box-shadow:0 18px 34px -20px rgba(16,21,33,0.28); border-color:rgba(16,21,33,0.22);}
+  .program-card:hover::before{opacity:0.24; transform:scale(1.06);}
   .program-icon{width:42px;height:42px; border-radius:10px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
   .program-icon svg{width:22px;height:22px;}
   .program-card h3{font-size:17.5px; margin-bottom:8px;}
@@ -250,19 +262,6 @@
   }
   .story-who .name{font-size:13.5px; font-weight:600;}
   .story-who .role{font-size:12px; color:var(--text-dark-soft);}
-
-  /* PARTNERS */
-  .partners{padding:100px 0; background:var(--paper); border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);}
-  .partners .section-head{margin-bottom:34px;}
-  .partner-cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
-  .partner-cat{background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius); padding:24px;}
-  .partner-cat h4{font-size:14.5px; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
-  .partner-cat h4 .dot{width:8px;height:8px;border-radius:50%;}
-  .partner-row{display:flex; flex-wrap:wrap; gap:10px;}
-  .partner-chip{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.02em; color:var(--text-dark-soft);
-    border:1px solid var(--paper-line); border-radius:999px; padding:9px 14px; background:var(--paper);
-  }
 
   /* GET INVOLVED */
     .gi-card{
@@ -320,7 +319,7 @@
     .impact-grid{grid-template-columns:repeat(2,1fr);}
     .eco-grid{grid-template-columns:1fr;}
     .story-grid{grid-template-columns:1fr;}
-    .about-grid,.partner-cat-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
     .sdg-cards{grid-template-columns:repeat(2,1fr);}
     .contact-inner{grid-template-columns:1fr;}
     .foot-grid{grid-template-columns:1fr 1fr;}
@@ -387,16 +386,6 @@
           <a href="#stories">Stories</a>
         </div>
       </li>
-      <li>
-        <a href="#partners">Partners</a>
-        <div class="dropdown">
-          <a class="dropdown-all" href="#partners">Partners Overview</a>
-          <a href="#academic-partners">Academic Partners</a>
-          <a href="#industry-partners">Industry Partners</a>
-          <a href="#government-partners">Government</a>
-          <a href="#csr-partners">CSR Partners</a>
-        </div>
-      </li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
@@ -433,15 +422,6 @@
         <div class="sub-links">
           <a href="#impact-dashboard">Impact Dashboard</a>
           <a href="#stories">Stories</a>
-        </div>
-      </details>
-      <details>
-        <summary>Partners</summary>
-        <div class="sub-links">
-          <a href="#academic-partners">Academic Partners</a>
-          <a href="#industry-partners">Industry Partners</a>
-          <a href="#government-partners">Government</a>
-          <a href="#csr-partners">CSR Partners</a>
         </div>
       </details>
       <a href="#contact">Contact</a>
@@ -587,61 +567,61 @@
       <p>Ten tracks, each mapped to a live industry skill gap and co-owned with a partner institution's own faculty.</p>
     </div>
     <div class="program-grid">
-      <div class="program-card" id="prog-cloud">
+      <div class="program-card" id="prog-cloud" style="--card-img:url('https://images.unsplash.com/photo-1680992044138-ce4864c2b962?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="4.5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 6.5v6M9.5 15.5L6.5 17M14.5 15.5L17.5 17"/></svg></div>
         <h3>Networking &amp; Cloud Foundations</h3>
         <p>Routing, switching and cloud-infra basics aligned to globally recognised networking certification pathways.</p>
         <span class="program-tag">CCNA-aligned</span>
       </div>
-      <div class="program-card" id="prog-ai">
+      <div class="program-card" id="prog-ai" style="--card-img:url('https://images.unsplash.com/photo-1750365919971-7dd273e7b317?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
         <h3>AI &amp; Data Fundamentals</h3>
         <p>From spreadsheets to models — data literacy, applied statistics, and a first working ML pipeline.</p>
         <span class="program-tag">Industry live-projects</span>
       </div>
-      <div class="program-card" id="prog-cyber">
+      <div class="program-card" id="prog-cyber" style="--card-img:url('https://images.unsplash.com/photo-1768839720936-87ce3adf2d08?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
         <h3>Cybersecurity Essentials</h3>
         <p>Threat basics, safe systems design and a hands-on capture-the-flag track for early learners.</p>
         <span class="program-tag">Hands-on labs</span>
       </div>
-      <div class="program-card" id="prog-ict">
+      <div class="program-card" id="prog-ict" style="--card-img:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
         <h3>Full-Stack &amp; App Development</h3>
         <p>Web and mobile fundamentals through to a deployable capstone project, reviewed by hiring partners.</p>
         <span class="program-tag">Capstone-graded</span>
       </div>
-      <div class="program-card" id="prog-digital-literacy">
+      <div class="program-card" id="prog-digital-literacy" style="--card-img:url('https://images.unsplash.com/photo-1743834147172-37c12011b321?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
         <h3>Digital Literacy Outreach</h3>
         <p>Foundational digital skills for government-school students and first-generation learners in Tier‑3 towns.</p>
         <span class="program-tag">Community-led</span>
       </div>
-      <div class="program-card" id="prog-faculty">
+      <div class="program-card" id="prog-faculty" style="--card-img:url('https://images.unsplash.com/photo-1598981457915-aea220950616?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 4l9 4-9 4-9-4 9-4z"/><path d="M5 10v5c0 1.5 3 3 7 3s7-1.5 7-3v-5"/></svg></div>
         <h3>Educator &amp; Faculty Development</h3>
         <p>Train-the-trainer programs so partner faculty can run and refresh the curriculum on their own.</p>
         <span class="program-tag">Faculty-first</span>
       </div>
-      <div class="program-card">
+      <div class="program-card" style="--card-img:url('https://images.unsplash.com/photo-1744640326166-433469d102f2?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><rect x="7" y="4" width="10" height="7" rx="2"/><path d="M9 11v3M15 11v3M6 20h12M8 20v-3h8v3"/><circle cx="10" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/><circle cx="14" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/></svg></div>
         <h3>Robotics &amp; IoT</h3>
         <p>Sensors, microcontrollers and connected devices, taught through build-it-yourself lab kits.</p>
         <span class="program-tag">Lab-based</span>
       </div>
-      <div class="program-card">
+      <div class="program-card" style="--card-img:url('https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M9 16v4M15 16v4"/><path d="M6.5 13l3-3 2.5 2 4-5"/></svg></div>
         <h3>Data Analytics &amp; Visualization</h3>
         <p>Turning raw datasets into dashboards and decisions, using the tools employers run daily.</p>
         <span class="program-tag">Portfolio-based</span>
       </div>
-      <div class="program-card">
+      <div class="program-card" style="--card-img:url('https://images.unsplash.com/photo-1680016661694-1cd3faf31c3a?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 12l2-4 2 3 2-5 2 6"/></svg></div>
         <h3>UI/UX &amp; Product Design</h3>
         <p>User research, wireframing and prototyping — designing the interfaces the other tracks build.</p>
         <span class="program-tag">Studio-style</span>
       </div>
-      <div class="program-card">
+      <div class="program-card" style="--card-img:url('https://images.unsplash.com/photo-1698047682091-782b1e5c6536?auto=format&amp;fit=crop&amp;w=1200&amp;q=60');">
         <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
         <h3>Career Readiness &amp; Employability</h3>
         <p>Interview practice, resumes and workplace communication, run alongside every technical track.</p>
@@ -765,48 +745,6 @@
     </div>
   </div>
 </section>
-
-<section class="partners" id="partners">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Who's in the network</span>
-      <h2>Built alongside, not in isolation</h2>
-    </div>
-    <div class="partner-cat-grid">
-      <div class="partner-cat" id="academic-partners">
-        <h4><span class="dot" style="background:#EFB246;"></span>Academic Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">AICTE-AFFILIATED ENGINEERING COLLEGES</span>
-          <span class="partner-chip">UNIVERSITY CAREER CENTRES</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="industry-partners">
-        <h4><span class="dot" style="background:#2BCBB4;"></span>Industry Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">GLOBAL TECH ALLIANCES</span>
-          <span class="partner-chip">CORPORATE HIRING PARTNERS</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="government-partners">
-        <h4><span class="dot" style="background:#19486A;"></span>Government</h4>
-        <div class="partner-row">
-          <span class="partner-chip">STATE SKILL MISSIONS</span>
-          <span class="partner-chip">DISTRICT SKILL COMMITTEES</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="csr-partners">
-        <h4><span class="dot" style="background:#C5192D;"></span>CSR Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">CORPORATE CSR FOUNDATIONS</span>
-          <span class="partner-chip">EMPLOYEE VOLUNTEERING PROGRAMS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
 
 <section class="contact-band tech-bg" id="contact">
   <div class="wrap contact-inner">
