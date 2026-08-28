@@ -1,1024 +1,1697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="RZDdI37CAMneRKIV6XEY7fPvmSlSs2p1M66YxbsoWWU" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SkillNet Academy — An ICT Education Foundation</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#070B14;
-    --ink-2:#111A2E;
-    --ink-3:#161F38;
-    --ink-line: rgba(237,239,245,0.13);
-    --ink-line-bright: rgba(237,239,245,0.22);
-    --paper:#EEF2EF;
-    --paper-2:#E3E9E4;
-    --paper-line: rgba(16,21,33,0.12);
-    --gold:#EFB246;
-    --gold-deep:#C98A22;
-    --teal:#2BCBB4;
-    --teal-deep:#188F81;
-    --text-dark:#10141F;
-    --text-dark-soft:#4A5164;
-    --text-light:#EDEFF5;
-    --text-light-soft:#AEB4C4;
-    --radius: 14px;
-    --disp: 'Space Grotesk', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--body);
-    background:var(--paper);
-    color:var(--text-dark);
-    line-height:1.5;
-    overflow-x:hidden;
-  }
-  a{color:inherit; text-decoration:none;}
-  img,svg{display:block; max-width:100%;}
-  ul{list-style:none;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
-  section{position:relative;}
-  section[id]{scroll-margin-top:78px;}
-  .tech-bg{
-    background-color:var(--ink);
-    background-image:
-      linear-gradient(rgba(237,239,245,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(237,239,245,0.05) 1px, transparent 1px);
-    background-size:46px 46px;
-    background-position:center top;
-  }
-  .tech-bg::before{
-    content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(ellipse 70% 42% at 50% 0%, rgba(43,203,180,0.13), transparent 65%);
-  }
-  .tech-bg::after{
-    content:""; position:absolute; top:0; left:0; right:0; height:1px; pointer-events:none;
-    background:linear-gradient(90deg, transparent, rgba(239,178,70,0.55), rgba(43,203,180,0.55), transparent);
-  }
-  @media (max-width:680px){
-    .tech-bg{background-size:34px 34px;}
-  }
-  h1,h2,h3,h4{font-family:var(--disp); font-weight:600; letter-spacing:-0.01em;}
-  .eyebrow{
-    font-family:var(--mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
-    display:inline-flex; align-items:center; gap:8px; color:var(--teal-deep); font-weight:500;
-  }
-  .eyebrow.on-dark{color:var(--teal);}
-  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor; display:inline-block;}
-  .btn{
-    display:inline-flex; align-items:center; gap:10px; padding:13px 24px; border-radius:999px;
-    font-family:var(--body); font-weight:600; font-size:15px; cursor:pointer; border:1px solid transparent;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
-  }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-primary{background:var(--gold); color:#1A1204; box-shadow:0 10px 24px -10px rgba(229,169,60,0.65);}
-  .btn-primary:hover{background:var(--gold-deep);}
-  .btn-ghost-dark{border-color:rgba(237,239,245,0.35); color:var(--text-light);}
-  .btn-ghost-dark:hover{border-color:var(--text-light); background:rgba(237,239,245,0.06);}
-  .btn-ghost-light{border-color:rgba(16,21,33,0.25); color:var(--text-dark);}
-  .btn-ghost-light:hover{border-color:var(--text-dark); background:rgba(16,21,33,0.04);}
-  .btn-sm{padding:9px 16px; font-size:13.5px;}
+    <meta name="google-site-verification" content="RZDdI37CAMneRKIV6XEY7fPvmSlSs2p1M66YxbsoWWU" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillNet Academy — An ICT Education Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #070B14;
+            --ink-2: #111A2E;
+            --ink-3: #161F38;
+            --ink-line: rgba(237, 239, 245, 0.13);
+            --ink-line-bright: rgba(237, 239, 245, 0.22);
+            --paper: #EEF2EF;
+            --paper-2: #E3E9E4;
+            --paper-line: rgba(16, 21, 33, 0.12);
+            --gold: #EFB246;
+            --gold-deep: #C98A22;
+            --teal: #2BCBB4;
+            --teal-deep: #188F81;
+            --text-dark: #10141F;
+            --text-dark-soft: #4A5164;
+            --text-light: #EDEFF5;
+            --text-light-soft: #AEB4C4;
+            --radius: 14px;
+            --disp: 'Space Grotesk', sans-serif;
+            --body: 'Inter', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--body);
+            background: var(--paper);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+        ul {
+            list-style: none;
+        }
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        section {
+            position: relative;
+        }
+        section[id] {
+            scroll-margin-top: 78px;
+        }
+        .tech-bg {
+            background-color: var(--ink);
+            background-image:
+                linear-gradient(rgba(237, 239, 245, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(237, 239, 245, 0.05) 1px, transparent 1px);
+            background-size: 46px 46px;
+            background-position: center top;
+        }
+        .tech-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 70% 42% at 50% 0%, rgba(43, 203, 180, 0.13), transparent 65%);
+        }
+        .tech-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            pointer-events: none;
+            background: linear-gradient(90deg, transparent, rgba(239, 178, 70, 0.55), rgba(43, 203, 180, 0.55), transparent);
+        }
+        @media (max-width:680px) {
+            .tech-bg {
+                background-size: 34px 34px;
+            }
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--disp);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 12.5px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--teal-deep);
+            font-weight: 500;
+        }
+        .eyebrow.on-dark {
+            color: var(--teal);
+        }
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            display: inline-block;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 24px;
+            border-radius: 999px;
+            font-family: var(--body);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: #1A1204;
+            box-shadow: 0 10px 24px -10px rgba(229, 169, 60, 0.65);
+        }
+        .btn-primary:hover {
+            background: var(--gold-deep);
+        }
+        .btn-ghost-dark {
+            border-color: rgba(237, 239, 245, 0.35);
+            color: var(--text-light);
+        }
+        .btn-ghost-dark:hover {
+            border-color: var(--text-light);
+            background: rgba(237, 239, 245, 0.06);
+        }
+        .btn-ghost-light {
+            border-color: rgba(16, 21, 33, 0.25);
+            color: var(--text-dark);
+        }
+        .btn-ghost-light:hover {
+            border-color: var(--text-dark);
+            background: rgba(16, 21, 33, 0.04);
+        }
+        .btn-sm {
+            padding: 9px 16px;
+            font-size: 13.5px;
+        }
 
-  /* NAV */
-  header{
-    position:sticky; top:0; z-index:100;
-    background:rgba(11,17,32,0.9); backdrop-filter:blur(10px) saturate(140%);
-    border-bottom:1px solid var(--ink-line);
-  }
-  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 32px; gap:20px;}
-  .logo{display:flex; align-items:center; gap:10px; color:var(--text-light); font-family:var(--disp); font-weight:700; font-size:18px; flex-shrink:0;}
-  .logo-mark{width:28px;height:28px;flex-shrink:0;}
-  .logo-text{display:flex; flex-direction:column; line-height:1.15;}
-  .logo-text small{font-family:var(--mono); font-weight:400; font-size:9.5px; letter-spacing:0.04em; color:var(--gold); text-transform:none; margin-top:2px;}
+        /* NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 17, 32, 0.9);
+            backdrop-filter: blur(10px) saturate(140%);
+            border-bottom: 1px solid var(--ink-line);
+        }
+        nav.wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 32px;
+            gap: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            font-family: var(--disp);
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+        .logo-text small {
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 9.5px;
+            letter-spacing: 0.04em;
+            color: var(--gold);
+            text-transform: none;
+            margin-top: 2px;
+        }
 
-  .navlinks{display:flex; align-items:center; gap:2px; flex:1; justify-content:center;}
-  .navlinks > li{position:relative;}
-  .navlinks > li > a{
-    display:flex; align-items:center; gap:5px; color:var(--text-light-soft); font-size:14px; font-weight:500;
-    padding:10px 13px; border-radius:8px; transition:color .15s, background .15s;
-  }
-  .navlinks > li > a:hover, .navlinks > li:hover > a, .navlinks > li:focus-within > a{color:var(--text-light); background:rgba(237,239,245,0.06);}
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex: 1;
+            justify-content: center;
+        }
+        .navlinks>li {
+            position: relative;
+        }
+        .navlinks>li>a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light-soft);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 13px;
+            border-radius: 8px;
+            transition: color .15s, background .15s;
+        }
+        .navlinks>li>a:hover,
+        .navlinks>li:hover>a,
+        .navlinks>li:focus-within>a {
+            color: var(--text-light);
+            background: rgba(237, 239, 245, 0.06);
+        }
 
-  .dropdown{
-    position:absolute; top:calc(100% + 14px); left:50%; transform:translate(-50%, 8px);
-    min-width:220px; background:var(--ink-2); border:1px solid var(--ink-line); border-radius:12px;
-    padding:8px; display:flex; flex-direction:column; gap:1px;
-    box-shadow:0 20px 40px -18px rgba(0,0,0,0.55); z-index:70;
-    opacity:0; visibility:hidden; pointer-events:none;
-    transition:opacity .2s ease, transform .2s ease, visibility .2s;
-  }
-  .navlinks > li:hover > .dropdown, .navlinks > li:focus-within > .dropdown{
-    opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%, 0);
-  }
-  .dropdown a{display:block; padding:9px 12px; border-radius:7px; font-size:13.5px; color:var(--text-light-soft); white-space:nowrap;}
-  .dropdown a:hover{background:rgba(237,239,245,0.07); color:var(--text-light);}
-  .dropdown a.dropdown-all{color:var(--gold); font-weight:600; border-bottom:1px solid var(--ink-line); border-radius:0; margin-bottom:4px; padding-bottom:11px;}
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 50%;
+            transform: translate(-50%, 8px);
+            min-width: 220px;
+            background: var(--ink-2);
+            border: 1px solid var(--ink-line);
+            border-radius: 12px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.55);
+            z-index: 70;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .2s ease, transform .2s ease, visibility .2s;
+        }
+        .navlinks>li:hover>.dropdown,
+        .navlinks>li:focus-within>.dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+        .dropdown a {
+            display: block;
+            padding: 9px 12px;
+            border-radius: 7px;
+            font-size: 13.5px;
+            color: var(--text-light-soft);
+            white-space: nowrap;
+        }
+        .dropdown a:hover {
+            background: rgba(237, 239, 245, 0.07);
+            color: var(--text-light);
+        }
+        .dropdown a.dropdown-all {
+            color: var(--gold);
+            font-weight: 600;
+            border-bottom: 1px solid var(--ink-line);
+            border-radius: 0;
+            margin-bottom: 4px;
+            padding-bottom: 11px;
+        }
 
-  .nav-cta{display:flex; align-items:center; gap:14px; flex-shrink:0;}
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
 
-  /* mobile nav (checkbox hack, no JS) */
-  .nav-check{display:none;}
-  .nav-burger{display:none; flex-direction:column; gap:4px; width:22px; cursor:pointer; z-index:71;}
-  .nav-burger span{height:2px; background:var(--text-light); border-radius:2px;}
-  .mobile-nav{display:none;}
+        /* mobile nav (checkbox hack, no JS) */
+        .nav-check {
+            display: none;
+        }
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            width: 22px;
+            cursor: pointer;
+            z-index: 71;
+        }
+        .nav-burger span {
+            height: 2px;
+            background: var(--text-light);
+            border-radius: 2px;
+        }
+        .mobile-nav {
+            display: none;
+        }
 
-  /* HERO */
-  .hero{
-    background:var(--ink); color:var(--text-light); position:relative; overflow:hidden;
-    padding:88px 0 0;
-  }
-  #hero-canvas-wrap{position:absolute; inset:0; z-index:0;}
-  #hero-canvas{position:absolute; inset:0; width:100%; height:100%;}
-  .hero-grid{
-    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
-    position:relative; z-index:2; padding-bottom:64px;
-  }
-  .hero h1{font-size:clamp(2.4rem, 4.4vw, 3.6rem); line-height:1.06; margin:22px 0 22px; max-width:15ch;}
-  .hero h1 em{font-style:normal; color:var(--gold);}
-  .hero p.lede{font-size:17.5px; color:var(--text-light-soft); max-width:46ch; margin-bottom:34px;}
-  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:46px;}
-  .hero-tags{display:flex; gap:10px; flex-wrap:wrap;}
-  .tag-chip{
-    font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em; color:var(--text-light-soft);
-    border:1px solid var(--ink-line); padding:7px 12px; border-radius:999px;
-  }
-  .hero-fade{
-    position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,17,32,0) 55%, var(--ink) 100%); z-index:1;
-    pointer-events:none;
-  }
+        /* HERO */
+        .hero {
+            background: var(--ink);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+            padding: 88px 0 0;
+        }
+        #hero-canvas-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 64px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+            line-height: 1.06;
+            margin: 22px 0 22px;
+            max-width: 15ch;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        .hero p.lede {
+            font-size: 17.5px;
+            color: var(--text-light-soft);
+            max-width: 46ch;
+            margin-bottom: 34px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 46px;
+        }
+        .hero-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tag-chip {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: 0.04em;
+            color: var(--text-light-soft);
+            border: 1px solid var(--ink-line);
+            padding: 7px 12px;
+            border-radius: 999px;
+        }
+        .hero-fade {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11, 17, 32, 0) 55%, var(--ink) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
 
-  /* SDG STRIP — redesigned light */
-  .sdg-strip{background:linear-gradient(180deg, #F3F7F3 0%, #ECF3ED 100%); padding:76px 0; border-bottom:1px solid var(--paper-line);}
-  .sdg-strip .section-head{margin-bottom:36px;}
-  .sdg-strip .section-head h2{color:var(--text-dark);}
-  .sdg-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
-  .sdg-card{
-    background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--paper-line);
-    box-shadow:0 14px 30px -22px rgba(16,21,33,0.35);
-    animation: sdgFloat 5.5s ease-in-out infinite;
-    transition: box-shadow .25s ease, transform .25s ease;
-  }
-  .sdg-card:nth-child(1){animation-delay:0s;}
-  .sdg-card:nth-child(2){animation-delay:0.7s;}
-  .sdg-card:nth-child(3){animation-delay:1.4s;}
-  .sdg-card:nth-child(4){animation-delay:2.1s;}
-  .sdg-card:hover{
-    animation-play-state:paused; transform:translateY(-12px);
-    box-shadow:0 30px 46px -20px rgba(16,21,33,0.4);
-  }
-  @keyframes sdgFloat{
-    0%,100%{ transform:translateY(0); box-shadow:0 14px 30px -22px rgba(16,21,33,0.35); }
-    50%{ transform:translateY(-11px); box-shadow:0 30px 40px -18px rgba(16,21,33,0.24); }
-  }
-  .sdg-card-top{height:6px; background:var(--accent);}
-  .sdg-card-body{padding:24px 20px;}
-  .sdg-icon{width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; background:var(--accent-tint); margin-bottom:16px;}
-  .sdg-icon svg{width:19px; height:19px;}
-  .sdg-goalnum{font-family:var(--mono); font-size:11.5px; letter-spacing:0.06em; color:var(--text-dark-soft); display:block; margin-bottom:4px;}
-  .sdg-card h4{font-size:16px; margin-bottom:8px;}
-  .sdg-card p{font-size:13.5px; color:var(--text-dark-soft); line-height:1.5;}
+        /* SDG STRIP — redesigned light */
+        .sdg-strip {
+            background: linear-gradient(180deg, #F3F7F3 0%, #ECF3ED 100%);
+            padding: 76px 0;
+            border-bottom: 1px solid var(--paper-line);
+        }
+        .sdg-strip .section-head {
+            margin-bottom: 36px;
+        }
+        .sdg-strip .section-head h2 {
+            color: var(--text-dark);
+        }
+        .sdg-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .sdg-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--paper-line);
+            box-shadow: 0 14px 30px -22px rgba(16, 21, 33, 0.35);
+            animation: sdgFloat 5.5s ease-in-out infinite;
+            transition: box-shadow .25s ease, transform .25s ease;
+        }
+        .sdg-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .sdg-card:nth-child(2) {
+            animation-delay: 0.7s;
+        }
+        .sdg-card:nth-child(3) {
+            animation-delay: 1.4s;
+        }
+        .sdg-card:nth-child(4) {
+            animation-delay: 2.1s;
+        }
+        .sdg-card:hover {
+            animation-play-state: paused;
+            transform: translateY(-12px);
+            box-shadow: 0 30px 46px -20px rgba(16, 21, 33, 0.4);
+        }
+        @keyframes sdgFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 14px 30px -22px rgba(16, 21, 33, 0.35);
+            }
+            50% {
+                transform: translateY(-11px);
+                box-shadow: 0 30px 40px -18px rgba(16, 21, 33, 0.24);
+            }
+        }
+        .sdg-card-top {
+            height: 6px;
+            background: var(--accent);
+        }
+        .sdg-card-body {
+            padding: 24px 20px;
+        }
+        .sdg-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-tint);
+            margin-bottom: 16px;
+        }
+        .sdg-icon svg {
+            width: 19px;
+            height: 19px;
+        }
+        .sdg-goalnum {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: 0.06em;
+            color: var(--text-dark-soft);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .sdg-card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .sdg-card p {
+            font-size: 13.5px;
+            color: var(--text-dark-soft);
+            line-height: 1.5;
+        }
 
-  /* SECTION HEADERS */
-  .section-head{max-width:620px; margin-bottom:52px;}
-  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem); margin-top:14px; line-height:1.15;}
-  .section-head p{color:var(--text-dark-soft); font-size:16px; margin-top:14px; max-width:52ch;}
-  .section-head.on-dark p{color:var(--text-light-soft);}
-  .section-head.on-dark h2{color:var(--text-light);}
+        /* SECTION HEADERS */
+        .section-head {
+            max-width: 620px;
+            margin-bottom: 52px;
+        }
+        .section-head h2 {
+            font-size: clamp(1.7rem, 3vw, 2.3rem);
+            margin-top: 14px;
+            line-height: 1.15;
+        }
+        .section-head p {
+            color: var(--text-dark-soft);
+            font-size: 16px;
+            margin-top: 14px;
+            max-width: 52ch;
+        }
+        .section-head.on-dark p {
+            color: var(--text-light-soft);
+        }
+        .section-head.on-dark h2 {
+            color: var(--text-light);
+        }
 
-  /* ABOUT */
-  .about{padding:110px 0; background:var(--paper);}
-  .about-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
-  .about-card{background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius); padding:30px;}
-  .about-card .idx{font-family:var(--mono); font-size:11.5px; color:var(--teal-deep); letter-spacing:0.06em; display:block; margin-bottom:12px;}
-  .about-card h3{font-size:18px; margin-bottom:10px;}
-  .about-card p{font-size:14.5px; color:var(--text-dark-soft);}
+        /* ABOUT */
+        .about {
+            padding: 110px 0;
+            background: var(--paper);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+        .about-card {
+            background: #fff;
+            border: 1px solid var(--paper-line);
+            border-radius: var(--radius);
+            padding: 30px;
+        }
+        .about-card .idx {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--teal-deep);
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .about-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .about-card p {
+            font-size: 14.5px;
+            color: var(--text-dark-soft);
+        }
 
-  /* IMPACT */
-  .impact{background:var(--ink); color:var(--text-light); padding:96px 0;}
-  .impact-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--ink-line); border:1px solid var(--ink-line); border-radius:var(--radius); overflow:hidden;}
-  .impact-cell{background:var(--ink-3); padding:34px 26px; text-align:left;}
-  .impact-num{font-family:var(--mono); font-size:clamp(2rem,3.4vw,2.6rem); font-weight:500; color:var(--gold); display:flex; align-items:baseline; gap:2px;}
-  .impact-cell:nth-child(2) .impact-num{color:var(--teal);}
-  .impact-cell:nth-child(4) .impact-num{color:var(--teal);}
-  .impact-label{margin-top:10px; font-size:13.5px; color:var(--text-light-soft); max-width:22ch;}
+        /* IMPACT */
+        .impact {
+            background: var(--ink);
+            color: var(--text-light);
+            padding: 96px 0;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--ink-line);
+            border: 1px solid var(--ink-line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .impact-cell {
+            background: var(--ink-3);
+            padding: 34px 26px;
+            text-align: left;
+        }
+        .impact-num {
+            font-family: var(--mono);
+            font-size: clamp(2rem, 3.4vw, 2.6rem);
+            font-weight: 500;
+            color: var(--gold);
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+        .impact-cell:nth-child(2) .impact-num {
+            color: var(--teal);
+        }
+        .impact-cell:nth-child(4) .impact-num {
+            color: var(--teal);
+        }
+        .impact-label {
+            margin-top: 10px;
+            font-size: 13.5px;
+            color: var(--text-light-soft);
+            max-width: 22ch;
+        }
 
-  /* PROGRAMS */
-  .programs{padding:110px 0; background:var(--paper);}
-  .program-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
-  .program-card{
-    background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius); padding:28px;
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .program-card:hover{transform:translateY(-4px); box-shadow:0 18px 34px -20px rgba(16,21,33,0.28); border-color:rgba(16,21,33,0.22);}
-  .program-icon{width:42px;height:42px; border-radius:10px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
-  .program-icon svg{width:22px;height:22px;}
-  .program-card h3{font-size:17.5px; margin-bottom:8px;}
-  .program-card p{font-size:14.5px; color:var(--text-dark-soft);}
-  .program-tag{display:inline-block; margin-top:14px; font-family:var(--mono); font-size:11px; color:var(--teal-deep); letter-spacing:0.03em;}
+        /* PROGRAMS */
+        .programs {
+            padding: 110px 0;
+            background: var(--paper);
+        }
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+        .program-card {
+            background: #fff;
+            border: 1px solid var(--paper-line);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .program-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 34px -20px rgba(16, 21, 33, 0.28);
+            border-color: rgba(16, 21, 33, 0.22);
+        }
+        .program-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: var(--paper-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .program-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .program-card h3 {
+            font-size: 17.5px;
+            margin-bottom: 8px;
+        }
+        .program-card p {
+            font-size: 14.5px;
+            color: var(--text-dark-soft);
+        }
+        .program-tag {
+            display: inline-block;
+            margin-top: 14px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--teal-deep);
+            letter-spacing: 0.03em;
+        }
 
-  /* ECOSYSTEM */
-  .ecosystem{background:var(--ink); color:var(--text-light); padding:110px 0;}
-  .eco-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:center;}
-  .eco-copy .eyebrow{margin-bottom:16px;}
-  .eco-list{margin-top:30px; display:flex; flex-direction:column; gap:20px;}
-  .eco-item{display:flex; gap:16px; align-items:flex-start;}
-  .eco-dot{width:10px;height:10px; border-radius:50%; margin-top:7px; flex-shrink:0;}
-  .eco-item h4{font-size:15.5px; margin-bottom:4px; color:var(--text-light);}
-  .eco-item p{font-size:14px; color:var(--text-light-soft); max-width:40ch;}
-  .eco-note{margin-top:30px; padding:18px 20px; border:1px solid var(--ink-line); border-radius:12px; background:var(--ink-3);}
-  .eco-note p{font-size:13.5px; color:var(--text-light-soft); line-height:1.6;}
-  .eco-note strong{color:var(--text-light); font-weight:600;}
-  #eco-svg-wrap{position:relative;}
-  .eco-svg-caption{position:absolute; bottom:-34px; left:0; right:0; text-align:center; font-family:var(--mono); font-size:11.5px; color:var(--text-light-soft);}
+        /* ECOSYSTEM */
+        .ecosystem {
+            background: var(--ink);
+            color: var(--text-light);
+            padding: 110px 0;
+        }
+        .eco-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .eco-copy .eyebrow {
+            margin-bottom: 16px;
+        }
+        .eco-list {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .eco-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .eco-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .eco-item h4 {
+            font-size: 15.5px;
+            margin-bottom: 4px;
+            color: var(--text-light);
+        }
+        .eco-item p {
+            font-size: 14px;
+            color: var(--text-light-soft);
+            max-width: 40ch;
+        }
+        .eco-note {
+            margin-top: 30px;
+            padding: 18px 20px;
+            border: 1px solid var(--ink-line);
+            border-radius: 12px;
+            background: var(--ink-3);
+        }
+        .eco-note p {
+            font-size: 13.5px;
+            color: var(--text-light-soft);
+            line-height: 1.6;
+        }
+        .eco-note strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        #eco-svg-wrap {
+            position: relative;
+        }
+        .eco-svg-caption {
+            position: absolute;
+            bottom: -34px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--text-light-soft);
+        }
 
-  /* STORIES */
-  .stories{padding:110px 0; background:var(--paper-2);}
-  .story-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-  .story-card{background:var(--paper); border:1px solid var(--paper-line); border-radius:var(--radius); padding:30px; display:flex; flex-direction:column; height:100%;}
-  .story-quote{font-family:var(--disp); font-size:16.5px; line-height:1.5; margin-bottom:22px; flex:1;}
-  .story-who{display:flex; align-items:center; gap:12px; padding-top:18px; border-top:1px solid var(--paper-line);}
-  .story-avatar{width:44px;height:44px; border-radius:50%; flex-shrink:0; font-size:14px; border:2px solid var(--paper-line);}
-  .avatar-badge{
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--disp); font-weight:700; color:#fff; flex-shrink:0;
-  }
-  .story-who .name{font-size:13.5px; font-weight:600;}
-  .story-who .role{font-size:12px; color:var(--text-dark-soft);}
+        /* STORIES */
+        .stories {
+            padding: 110px 0;
+            background: var(--paper-2);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .story-card {
+            background: var(--paper);
+            border: 1px solid var(--paper-line);
+            border-radius: var(--radius);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .story-quote {
+            font-family: var(--disp);
+            font-size: 16.5px;
+            line-height: 1.5;
+            margin-bottom: 22px;
+            flex: 1;
+        }
+        .story-who {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 18px;
+            border-top: 1px solid var(--paper-line);
+        }
+        .story-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-size: 14px;
+            border: 2px solid var(--paper-line);
+        }
+        .avatar-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--disp);
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .story-who .name {
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+        .story-who .role {
+            font-size: 12px;
+            color: var(--text-dark-soft);
+        }
 
-  /* PARTNERS */
-  .partners{padding:100px 0; background:var(--paper); border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);}
-  .partners .section-head{margin-bottom:34px;}
-  .partner-cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
-  .partner-cat{background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius); padding:24px;}
-  .partner-cat h4{font-size:14.5px; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
-  .partner-cat h4 .dot{width:8px;height:8px;border-radius:50%;}
-  .partner-row{display:flex; flex-wrap:wrap; gap:10px;}
-  .partner-chip{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.02em; color:var(--text-dark-soft);
-    border:1px solid var(--paper-line); border-radius:999px; padding:9px 14px; background:var(--paper);
-  }
+        /* GET INVOLVED */
+        .gi-card {
+            border: 1px solid var(--ink-line);
+            border-radius: var(--radius);
+            padding: 26px;
+            background: var(--ink-3);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color .2s ease, transform .2s ease;
+        }
+        .gi-card:hover {
+            border-color: var(--ink-line-bright);
+            transform: translateY(-3px);
+        }
+        .gi-card h4 {
+            font-size: 16px;
+        }
+        .gi-card p {
+            font-size: 13.5px;
+            color: var(--text-light-soft);
+            flex: 1;
+        }
 
-  /* GET INVOLVED */
-    .gi-card{
-    border:1px solid var(--ink-line); border-radius:var(--radius); padding:26px;
-    background:var(--ink-3); display:flex; flex-direction:column; gap:14px;
-    transition:border-color .2s ease, transform .2s ease;
-  }
-  .gi-card:hover{border-color:var(--ink-line-bright); transform:translateY(-3px);}
-  .gi-card h4{font-size:16px;}
-  .gi-card p{font-size:13.5px; color:var(--text-light-soft); flex:1;}
+        /* CONTACT */
+        .contact-band {
+            background: var(--ink);
+            color: var(--text-light);
+            padding: 90px 0 70px;
+            border-top: 1px solid var(--ink-line);
+        }
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .contact-inner h2 {
+            font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+            max-width: 16ch;
+            line-height: 1.14;
+        }
+        .contact-inner p {
+            color: var(--text-light-soft);
+            margin-top: 14px;
+            max-width: 40ch;
+            font-size: 15.5px;
+        }
+        .contact-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 26px;
+        }
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-detail {
+            border: 1px solid var(--ink-line);
+            border-radius: 12px;
+            padding: 18px 20px;
+            background: var(--ink-3);
+        }
+        .contact-detail .lbl {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-light-soft);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .contact-detail .val {
+            font-size: 15px;
+            color: var(--text-light);
+        }
 
-  /* CONTACT */
-  .contact-band{background:var(--ink); color:var(--text-light); padding:90px 0 70px; border-top:1px solid var(--ink-line);}
-  .contact-inner{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
-  .contact-inner h2{font-size:clamp(1.8rem,3.4vw,2.4rem); max-width:16ch; line-height:1.14;}
-  .contact-inner p{color:var(--text-light-soft); margin-top:14px; max-width:40ch; font-size:15.5px;}
-  .contact-actions{display:flex; gap:16px; flex-wrap:wrap; margin-top:26px;}
-  .contact-details{display:flex; flex-direction:column; gap:16px;}
-  .contact-detail{border:1px solid var(--ink-line); border-radius:12px; padding:18px 20px; background:var(--ink-3);}
-  .contact-detail .lbl{font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-light-soft); display:block; margin-bottom:6px;}
-  .contact-detail .val{font-size:15px; color:var(--text-light);}
+        footer {
+            background: var(--ink);
+            color: var(--text-light-soft);
+            padding: 52px 0 30px;
+            font-size: 13.5px;
+            border-top: 1px solid var(--ink-line);
+        }
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
+            gap: 28px;
+            padding-bottom: 40px;
+        }
+        .foot-brand {
+            font-family: var(--disp);
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+        .foot-tagline {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .foot-col h5 {
+            color: var(--text-light);
+            font-size: 12.5px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            font-family: var(--mono);
+            font-weight: 500;
+        }
+        .foot-col a {
+            display: block;
+            margin-bottom: 9px;
+            color: var(--text-light-soft);
+            transition: color .15s;
+        }
+        .foot-col a:hover {
+            color: var(--text-light);
+        }
+        .foot-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--ink-line);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .foot-social {
+            display: flex;
+            gap: 14px;
+        }
+        .foot-social a {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--ink-line);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .foot-social svg {
+            width: 15px;
+            height: 15px;
+        }
 
-  footer{background:var(--ink); color:var(--text-light-soft); padding:52px 0 30px; font-size:13.5px; border-top:1px solid var(--ink-line);}
-  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr 1fr; gap:28px; padding-bottom:40px;}
-  .foot-brand{font-family:var(--disp); color:var(--text-light); font-weight:700; font-size:17px; margin-bottom:6px;}
-  .foot-tagline{font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--gold); margin-bottom:14px;}
-  .foot-col h5{color:var(--text-light); font-size:12.5px; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:14px; font-family:var(--mono); font-weight:500;}
-  .foot-col a{display:block; margin-bottom:9px; color:var(--text-light-soft); transition:color .15s;}
-  .foot-col a:hover{color:var(--text-light);}
-  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; border-top:1px solid var(--ink-line); flex-wrap:wrap; gap:12px;}
-  .foot-social{display:flex; gap:14px;}
-  .foot-social a{width:34px;height:34px; border:1px solid var(--ink-line); border-radius:50%; display:flex; align-items:center; justify-content:center;}
-  .foot-social svg{width:15px;height:15px;}
-
-  @media (max-width: 1020px){
-    .navlinks{display:none;}
-    .nav-burger{display:flex;}
-    .mobile-nav{
-      display:block; max-height:0; overflow:hidden; transition:max-height .3s ease;
-      background:var(--ink-2); border-top:1px solid var(--ink-line);
-    }
-    .nav-check:checked ~ .mobile-nav{max-height:80vh; overflow-y:auto;}
-    .mobile-nav .wrap{padding:14px 24px 26px; display:flex; flex-direction:column; gap:2px;}
-    .mobile-nav > .wrap > a, .mobile-nav details summary{
-      padding:13px 4px; color:var(--text-light); font-size:15px; font-weight:500; border-bottom:1px solid var(--ink-line);
-      cursor:pointer; list-style:none;
-    }
-    .mobile-nav details summary::-webkit-details-marker{display:none;}
-    .mobile-nav details[open] summary{color:var(--gold);}
-    .mobile-nav .sub-links{display:flex; flex-direction:column; padding:4px 4px 10px 14px;}
-    .mobile-nav .sub-links a{padding:9px 0; font-size:14px; color:var(--text-light-soft);}
-    .gi-grid{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width: 900px){
-    .impact-grid{grid-template-columns:repeat(2,1fr);}
-    .eco-grid{grid-template-columns:1fr;}
-    .story-grid{grid-template-columns:1fr;}
-    .about-grid,.partner-cat-grid{grid-template-columns:1fr;}
-    .sdg-cards{grid-template-columns:repeat(2,1fr);}
-    .contact-inner{grid-template-columns:1fr;}
-    .foot-grid{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width: 560px){
-    .wrap{padding:0 20px;}
-    nav.wrap{padding:14px 20px;}
-    .impact-grid{grid-template-columns:1fr;}
-    .sdg-cards{grid-template-columns:1fr;}
-    .foot-grid{grid-template-columns:1fr;}
-    .gi-grid{grid-template-columns:1fr;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-</style>
+        @media (max-width: 1020px) {
+            .navlinks {
+                display: none;
+            }
+            .nav-burger {
+                display: flex;
+            }
+            .mobile-nav {
+                display: block;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .3s ease;
+                background: var(--ink-2);
+                border-top: 1px solid var(--ink-line);
+            }
+            .nav-check:checked~.mobile-nav {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .mobile-nav .wrap {
+                padding: 14px 24px 26px;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .mobile-nav>.wrap>a,
+            .mobile-nav details summary {
+                padding: 13px 4px;
+                color: var(--text-light);
+                font-size: 15px;
+                font-weight: 500;
+                border-bottom: 1px solid var(--ink-line);
+                cursor: pointer;
+                list-style: none;
+            }
+            .mobile-nav details summary::-webkit-details-marker {
+                display: none;
+            }
+            .mobile-nav details[open] summary {
+                color: var(--gold);
+            }
+            .mobile-nav .sub-links {
+                display: flex;
+                flex-direction: column;
+                padding: 4px 4px 10px 14px;
+            }
+            .mobile-nav .sub-links a {
+                padding: 9px 0;
+                font-size: 14px;
+                color: var(--text-light-soft);
+            }
+            .gi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .eco-grid {
+                grid-template-columns: 1fr;
+            }
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid,
+            .partner-cat-grid {
+                grid-template-columns: 1fr;
+            }
+            .sdg-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-inner {
+                grid-template-columns: 1fr;
+            }
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 560px) {
+            .wrap {
+                padding: 0 20px;
+            }
+            nav.wrap {
+                padding: 14px 20px;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            .sdg-cards {
+                grid-template-columns: 1fr;
+            }
+            .foot-grid {
+                grid-template-columns: 1fr;
+            }
+            .gi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <input type="checkbox" id="navCheck" class="nav-check">
-  <nav class="wrap">
-    <a href="#home" class="logo">
-      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="6" r="3.4" fill="#EFB246"/>
-        <circle cx="6" cy="22" r="3.4" fill="#2BCBB4"/>
-        <circle cx="26" cy="22" r="3.4" fill="#2BCBB4"/>
-        <circle cx="16" cy="16" r="2.6" fill="#EDEFF5"/>
-        <path d="M16 9.2V13.6M13.7 17.4L8.4 20.4M18.3 17.4L23.6 20.4" stroke="#7C8399" stroke-width="1.4"/>
-      </svg>
-      <span class="logo-text">SkillNet Academy<small>Bridging classrooms to careers</small></span>
-    </a>
+    <header>
+        <input type="checkbox" id="navCheck" class="nav-check">
+        <nav class="wrap">
+            <a href="#home" class="logo">
+                <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="6" r="3.4" fill="#EFB246" />
+                    <circle cx="6" cy="22" r="3.4" fill="#2BCBB4" />
+                    <circle cx="26" cy="22" r="3.4" fill="#2BCBB4" />
+                    <circle cx="16" cy="16" r="2.6" fill="#EDEFF5" />
+                    <path d="M16 9.2V13.6M13.7 17.4L8.4 20.4M18.3 17.4L23.6 20.4" stroke="#7C8399" stroke-width="1.4" />
+                </svg>
+                <span class="logo-text">SkillNet Academy<small>Bridging classrooms to careers</small></span>
+            </a>
 
-    <ul class="navlinks">
-      <li><a href="#home">Home</a></li>
-      <li>
-        <a href="#about">About</a>
-        <div class="dropdown">
-          <a class="dropdown-all" href="#about">About Overview</a>
-          <a href="#story">Our Story</a>
-          <a href="#mission">Mission &amp; Vision</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#governance">Governance</a>
+            <ul class="navlinks">
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#about">About</a>
+                    <div class="dropdown">
+                        <a class="dropdown-all" href="#about">About Overview</a>
+                        <a href="#story">Our Story</a>
+                        <a href="#mission">Mission &amp; Vision</a>
+                        <a href="#leadership">Leadership</a>
+                        <a href="#governance">Governance</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#programs">Programs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-all" href="#programs">All Programs</a>
+                        <a href="#prog-ict">ICT &amp; Digital Skills</a>
+                        <a href="#prog-ai">AI &amp; Data</a>
+                        <a href="#prog-cyber">Cybersecurity</a>
+                        <a href="#prog-cloud">Cloud &amp; Networking</a>
+                        <a href="#prog-digital-literacy">Digital Literacy</a>
+                        <a href="#prog-faculty">Faculty Development</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#impact">Impact</a>
+                    <div class="dropdown">
+                        <a class="dropdown-all" href="#impact">Impact Overview</a>
+                        <a href="#impact-dashboard">Impact Dashboard</a>
+                        <a href="#stories">Stories</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#partners">Partners</a>
+                    <div class="dropdown">
+                        <a class="dropdown-all" href="#partners">Partners Overview</a>
+                        <a href="#academic-partners">Academic Partners</a>
+                        <a href="#industry-partners">Industry Partners</a>
+                        <a href="#government-partners">Government</a>
+                        <a href="#csr-partners">CSR Partners</a>
+                    </div>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <label for="navCheck" class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></label>
+            </div>
+        </nav>
+
+        <div class="mobile-nav">
+            <div class="wrap">
+                <a href="#home">Home</a>
+                <details>
+                    <summary>About</summary>
+                    <div class="sub-links">
+                        <a href="#story">Our Story</a>
+                        <a href="#mission">Mission &amp; Vision</a>
+                        <a href="#leadership">Leadership</a>
+                        <a href="#governance">Governance</a>
+                    </div>
+                </details>
+                <details>
+                    <summary>Programs</summary>
+                    <div class="sub-links">
+                        <a href="#prog-ict">ICT &amp; Digital Skills</a>
+                        <a href="#prog-ai">AI &amp; Data</a>
+                        <a href="#prog-cyber">Cybersecurity</a>
+                        <a href="#prog-cloud">Cloud &amp; Networking</a>
+                        <a href="#prog-digital-literacy">Digital Literacy</a>
+                        <a href="#prog-faculty">Faculty Development</a>
+                    </div>
+                </details>
+                <details>
+                    <summary>Impact</summary>
+                    <div class="sub-links">
+                        <a href="#impact-dashboard">Impact Dashboard</a>
+                        <a href="#stories">Stories</a>
+                    </div>
+                </details>
+                <details>
+                    <summary>Partners</summary>
+                    <div class="sub-links">
+                        <a href="#academic-partners">Academic Partners</a>
+                        <a href="#industry-partners">Industry Partners</a>
+                        <a href="#government-partners">Government</a>
+                        <a href="#csr-partners">CSR Partners</a>
+                    </div>
+                </details>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-      </li>
-      <li>
-        <a href="#programs">Programs</a>
-        <div class="dropdown">
-          <a class="dropdown-all" href="#programs">All Programs</a>
-          <a href="#prog-ict">ICT &amp; Digital Skills</a>
-          <a href="#prog-ai">AI &amp; Data</a>
-          <a href="#prog-cyber">Cybersecurity</a>
-          <a href="#prog-cloud">Cloud &amp; Networking</a>
-          <a href="#prog-digital-literacy">Digital Literacy</a>
-          <a href="#prog-faculty">Faculty Development</a>
+    </header>
+
+    <section class="hero tech-bg" id="home" style="background-image: url('hero-banner.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(7,11,20,0.85);">
+        <div id="hero-canvas-wrap">
+            <canvas id="hero-canvas"></canvas>
         </div>
-      </li>
-      <li>
-        <a href="#impact">Impact</a>
-        <div class="dropdown">
-          <a class="dropdown-all" href="#impact">Impact Overview</a>
-          <a href="#impact-dashboard">Impact Dashboard</a>
-          <a href="#stories">Stories</a>
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow on-dark">A foundation for ICT education</span>
+                <h1>Wiring the next mile of India's <em>digital</em> economy</h1>
+                <p class="lede">SkillNet Academy links learners, institutions, industry and government into one skilling network — designed around SDG&nbsp;4, SDG&nbsp;8 and SDG&nbsp;9, and built for the classrooms of Tier‑2 and Tier‑3 India.</p>
+                <div class="hero-actions">
+                    <a href="#programs" class="btn btn-primary">Explore our programs</a>
+                    <a href="#impact" class="btn btn-ghost-dark">See our impact →</a>
+                </div>
+                <div class="hero-tags">
+                    <span class="tag-chip">INDUSTRY-CO-DESIGNED</span>
+                    <span class="tag-chip">GOVT. + ACADEMIA + INDUSTRY</span>
+                </div>
+            </div>
         </div>
-      </li>
-      <li>
-        <a href="#partners">Partners</a>
-        <div class="dropdown">
-          <a class="dropdown-all" href="#partners">Partners Overview</a>
-          <a href="#academic-partners">Academic Partners</a>
-          <a href="#industry-partners">Industry Partners</a>
-          <a href="#government-partners">Government</a>
-          <a href="#csr-partners">CSR Partners</a>
+        <div class="hero-fade"></div>
+    </section>
+
+    <section class="sdg-strip">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Anchored to the Global Goals</span>
+                <h2>Four goals, one shared scoreboard</h2>
+                <p>Every program we run is designed against a specific, measurable global commitment — not just a mission statement.</p>
+            </div>
+            <div class="sdg-cards">
+                <div class="sdg-card" style="--accent:#C5192D; --accent-tint:#FCE9EC;">
+                    <div class="sdg-card-top"></div>
+                    <div class="sdg-card-body">
+                        <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C5192D" stroke-width="1.7"><path d="M12 4L3 8l9 4 9-4-9-4z"/><path d="M7 10.5V16c0 1.4 2.3 2.5 5 2.5s5-1.1 5-2.5v-5.5"/><path d="M21 8v6"/></svg></span>
+                        <span class="sdg-goalnum">GOAL 04</span>
+                        <h4>Quality Education</h4>
+                        <p>Inclusive, equitable ICT learning delivered inside classrooms that had none of it before.</p>
+                    </div>
+                </div>
+                <div class="sdg-card" style="--accent:#A21942; --accent-tint:#FBE7ED;">
+                    <div class="sdg-card-top"></div>
+                    <div class="sdg-card-body">
+                        <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A21942" stroke-width="1.7"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M4 13h16"/></svg></span>
+                        <span class="sdg-goalnum">GOAL 08</span>
+                        <h4>Decent Work &amp; Growth</h4>
+                        <p>Curricula built to a live hiring bar, so a certificate converts into an actual job.</p>
+                    </div>
+                </div>
+                <div class="sdg-card" style="--accent:#FD9D24; --accent-tint:#FFF1DE;">
+                    <div class="sdg-card-top"></div>
+                    <div class="sdg-card-body">
+                        <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B5720A" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></span>
+                        <span class="sdg-goalnum">GOAL 09</span>
+                        <h4>Industry &amp; Innovation</h4>
+                        <p>Cloud, AI and networking labs bringing modern infrastructure into under-resourced campuses.</p>
+                    </div>
+                </div>
+                <div class="sdg-card" style="--accent:#19486A; --accent-tint:#E7EEF3;">
+                    <div class="sdg-card-top"></div>
+                    <div class="sdg-card-body">
+                        <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#19486A" stroke-width="1.7"><path d="M8 12l-4 3.5M16 12l4 3.5"/><path d="M6 9.5a3 3 0 116 0 3 3 0 01-6 0zM12 9.5a3 3 0 116 0 3 3 0 01-6 0z"/><path d="M9 12.2c-1.6.5-3 1.6-3 3.3v1.5h6v-1.5c0-1.7-1.4-2.8-3-3.3zM15 12.2c1.6.5 3 1.6 3 3.3v1.5h-3"/></svg></span>
+                        <span class="sdg-goalnum">GOAL 17</span>
+                        <h4>Partnerships for the Goals</h4>
+                        <p>No single actor can close the skills gap alone — the network exists to make that literal.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    </section>
 
-    <div class="nav-cta">
-      <label for="navCheck" class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></label>
-    </div>
-  </nav>
-
-  <div class="mobile-nav">
-    <div class="wrap">
-      <a href="#home">Home</a>
-      <details>
-        <summary>About</summary>
-        <div class="sub-links">
-          <a href="#story">Our Story</a>
-          <a href="#mission">Mission &amp; Vision</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#governance">Governance</a>
+    <section class="about" id="about">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">About SkillNet Academy</span>
+                <h2>A foundation built to close one specific gap</h2>
+                <p>Four things worth knowing before you partner with us, volunteer, or send us your students.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card" id="story">
+                    <span class="idx">OUR STORY</span>
+                    <h3>Where the network started</h3>
+                    <p>SkillNet Academy began as a handful of weekend networking labs run out of borrowed classrooms, after one too many hiring partners asked why graduates couldn't do what their own coursework claimed. The network grew college by college, state by state, from that same premise: teach what the next job actually needs.</p>
+                </div>
+                <div class="about-card" id="mission">
+                    <span class="idx">MISSION &amp; VISION</span>
+                    <h3>What we're building toward</h3>
+                    <p><strong>Mission:</strong> equip every learner we reach with ICT skills that convert directly into work or further study. <strong>Vision:</strong> an India where a student's postal code no longer predicts their access to a modern, industry-relevant education.</p>
+                </div>
+                <div class="about-card" id="leadership">
+                    <span class="idx">LEADERSHIP</span>
+                    <h3>Who runs the network</h3>
+                    <p>A small team spanning CSR program delivery, industry-academia partnerships, and government skilling missions leads day-to-day operations, working directly with each partner institution's own faculty rather than around them.</p>
+                </div>
+                <div class="about-card" id="governance">
+                    <span class="idx">GOVERNANCE</span>
+                    <h3>How we stay accountable</h3>
+                    <p>An independent board of trustees oversees the foundation's direction and finances, with regular third-party review of program outcomes and fund utilisation shared with every partner and donor.</p>
+                </div>
+            </div>
         </div>
-      </details>
-      <details>
-        <summary>Programs</summary>
-        <div class="sub-links">
-          <a href="#prog-ict">ICT &amp; Digital Skills</a>
-          <a href="#prog-ai">AI &amp; Data</a>
-          <a href="#prog-cyber">Cybersecurity</a>
-          <a href="#prog-cloud">Cloud &amp; Networking</a>
-          <a href="#prog-digital-literacy">Digital Literacy</a>
-          <a href="#prog-faculty">Faculty Development</a>
+    </section>
+
+    <section class="impact tech-bg" id="impact">
+        <div class="wrap">
+            <div class="section-head on-dark">
+                <span class="eyebrow on-dark">Impact in numbers</span>
+                <h2>What the network has moved so far</h2>
+                <p>Every figure below is a partner institution that adopted a curriculum, or a learner who moved from a classroom into a live industry track.</p>
+            </div>
+            <div class="impact-grid" id="impact-dashboard">
+                <div class="impact-cell">
+                    <div class="impact-num" data-target="20000" data-suffix="+">0</div>
+                    <div class="impact-label">Learners reached</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num" data-target="100" data-suffix="+">0</div>
+                    <div class="impact-label">Partner education</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num" data-target="15" data-suffix="">0</div>
+                    <div class="impact-label">States &amp; union territories with active programs</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num" data-target="71" data-suffix="%">0</div>
+                    <div class="impact-label">Learners moving into jobs or higher study within a year</div>
+                </div>
+            </div>
         </div>
-      </details>
-      <details>
-        <summary>Impact</summary>
-        <div class="sub-links">
-          <a href="#impact-dashboard">Impact Dashboard</a>
-          <a href="#stories">Stories</a>
+    </section>
+
+    <section class="programs" id="programs">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Programs</span>
+                <h2>ICT tracks built with employers, taught inside classrooms</h2>
+                <p>Ten tracks, each mapped to a live industry skill gap and co-owned with a partner institution's own faculty.</p>
+            </div>
+            <div class="program-grid">
+                <div class="program-card" id="prog-cloud">
+                    <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="4.5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 6.5v6M9.5 15.5L6.5 17M14.5 15.5L17.5 17"/></svg></div>
+                    <h3>Networking &amp; Cloud Foundations</h3>
+                    <p>Routing, switching and cloud-infra basics aligned to globally recognised networking certification pathways.</p>
+                    <span class="program-tag">CCNA-aligned</span>
+                </div>
+                <div class="program-card" id="prog-ai">
+                    <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+                    <h3>AI &amp; Data Fundamentals</h3>
+                    <p>From spreadsheets to models — data literacy, applied statistics, and a first working ML pipeline.</p>
+                    <span class="program-tag">Industry live-projects</span>
+                </div>
+                <div class="program-card" id="prog-cyber">
+                    <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
+                    <h3>Cybersecurity Essentials</h3>
+                    <p>Threat basics, safe systems design and a hands-on capture-the-flag track for early learners.</p>
+                    <span class="program-tag">Hands-on labs</span>
+                </div>
+                <div class="program-card" id="prog-ict">
+                    <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
+                    <h3>Full-Stack &amp; App Development</h3>
+                    <p>Web and mobile fundamentals through to a deployable capstone project, reviewed by hiring partners.</p>
+                    <span class="program-tag">Capstone-graded</span>
+                </div>
+                <div class="program-card" id="prog-digital-literacy">
+                    <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                    <h3>Digital Literacy Outreach</h3>
+                    <p>Foundational digital skills for government-school students and first-generation learners in Tier‑3 towns.</p>
+                    <span class="program-tag">Community-led</span>
+                </div>
+                <div class="program-card" id="prog-faculty">
+                    <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 4l9 4-9 4-9-4 9-4z"/><path d="M5 10v5c0 1.5 3 3 7 3s7-1.5 7-3v-5"/></svg></div>
+                    <h3>Educator &amp; Faculty Development</h3>
+                    <p>Train-the-trainer programs so partner faculty can run and refresh the curriculum on their own.</p>
+                    <span class="program-tag">Faculty-first</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><rect x="7" y="4" width="10" height="7" rx="2"/><path d="M9 11v3M15 11v3M6 20h12M8 20v-3h8v3"/><circle cx="10" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/><circle cx="14" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/></svg></div>
+                    <h3>Robotics &amp; IoT</h3>
+                    <p>Sensors, microcontrollers and connected devices, taught through build-it-yourself lab kits.</p>
+                    <span class="program-tag">Lab-based</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M9 16v4M15 16v4"/><path d="M6.5 13l3-3 2.5 2 4-5"/></svg></div>
+                    <h3>Data Analytics &amp; Visualization</h3>
+                    <p>Turning raw datasets into dashboards and decisions, using the tools employers run daily.</p>
+                    <span class="program-tag">Portfolio-based</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 12l2-4 2 3 2-5 2 6"/></svg></div>
+                    <h3>UI/UX &amp; Product Design</h3>
+                    <p>User research, wireframing and prototyping — designing the interfaces the other tracks build.</p>
+                    <span class="program-tag">Studio-style</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                    <h3>Career Readiness &amp; Employability</h3>
+                    <p>Interview practice, resumes and workplace communication, run alongside every technical track.</p>
+                    <span class="program-tag">Placement-focused</span>
+                </div>
+            </div>
         </div>
-      </details>
-      <details>
-        <summary>Partners</summary>
-        <div class="sub-links">
-          <a href="#academic-partners">Academic Partners</a>
-          <a href="#industry-partners">Industry Partners</a>
-          <a href="#government-partners">Government</a>
-          <a href="#csr-partners">CSR Partners</a>
+    </section>
+
+    <section class="ecosystem tech-bg" id="ecosystem">
+        <div class="wrap eco-grid">
+            <div class="eco-copy">
+                <span class="eyebrow on-dark">The linkage model</span>
+                <h2 style="font-size:clamp(1.7rem,3vw,2.3rem); margin-top:12px; max-width:15ch;">One network, four pillars, no dead ends</h2>
+                <p style="color:var(--text-light-soft); margin-top:14px; max-width:44ch;">SkillNet Academy doesn't sit beside the ecosystem — it's the connective layer inside it, routing demand signals from industry back into curriculum, and routing learners forward into placement.</p>
+                <div class="eco-list">
+                    <div class="eco-item"><span class="eco-dot" style="background:#19486A;"></span><div><h4>Government</h4><p>Policy alignment with national skilling missions and state skill development corporations.</p></div></div>
+                    <div class="eco-item"><span class="eco-dot" style="background:#EFB246;"></span><div><h4>Academia</h4><p>Colleges and universities that host labs, faculty, and credit-linked coursework.</p></div></div>
+                    <div class="eco-item"><span class="eco-dot" style="background:#2BCBB4;"></span><div><h4>Industry</h4><p>Employers that shape curricula, run live projects, and hire directly from the network.</p></div></div>
+                    <div class="eco-item"><span class="eco-dot" style="background:#C5192D;"></span><div><h4>Learners &amp; Educators</h4><p>Students and faculty whose progress data keeps every track current and job-relevant.</p></div></div>
+                </div>
+                <div class="eco-note">
+                    <p><strong>How the matching works —</strong> learner progress, faculty feedback and employer skill demand all feed the same dashboard, so a curriculum gap surfaces in weeks, not admission cycles.</p>
+                </div>
+            </div>
+            <div id="eco-svg-wrap">
+                <svg viewBox="0 0 480 480" width="100%" id="eco-svg">
+                    <defs>
+                        <filter id="ecoGlow" x="-100%" y="-100%" width="300%" height="300%">
+                            <feGaussianBlur stdDeviation="3.2" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <g stroke="rgba(237,239,245,0.18)" stroke-width="1.4" fill="none">
+                        <path d="M240 240 L240 70" />
+                        <path d="M240 240 L410 165" />
+                        <path d="M240 240 L410 315" />
+                        <path d="M240 240 L240 410" />
+                        <path d="M240 240 L70 165" />
+                        <path d="M240 240 L70 315" />
+                    </g>
+                    <g filter="url(#ecoGlow)">
+                        <circle r="3.2" fill="#19486A"><animateMotion dur="3.4s" repeatCount="indefinite" path="M240 240 L240 70" /></circle>
+                        <circle r="3.2" fill="#EFB246"><animateMotion dur="4.1s" repeatCount="indefinite" path="M240 240 L410 165" /></circle>
+                        <circle r="3.2" fill="#2BCBB4"><animateMotion dur="3.8s" repeatCount="indefinite" path="M240 240 L410 315" /></circle>
+                        <circle r="3.2" fill="#C5192D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M240 240 L240 410" /></circle>
+                        <circle r="3.2" fill="#EFB246"><animateMotion dur="3.6s" repeatCount="indefinite" path="M240 240 L70 165" /></circle>
+                        <circle r="3.2" fill="#C5192D"><animateMotion dur="3.9s" repeatCount="indefinite" path="M240 240 L70 315" /></circle>
+                    </g>
+
+                    <g>
+                        <circle cx="240" cy="70" r="30" fill="#111A2E" stroke="#19486A" stroke-width="1.6" />
+                        <text x="240" y="66" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Govt.</text>
+                        <text x="240" y="80" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">POLICY</text>
+                    </g>
+                    <g>
+                        <circle cx="410" cy="165" r="30" fill="#111A2E" stroke="#EFB246" stroke-width="1.6" />
+                        <text x="410" y="161" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Academia</text>
+                        <text x="410" y="175" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">CAMPUS</text>
+                    </g>
+                    <g>
+                        <circle cx="410" cy="315" r="30" fill="#111A2E" stroke="#2BCBB4" stroke-width="1.6" />
+                        <text x="410" y="311" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Industry</text>
+                        <text x="410" y="325" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">DEMAND</text>
+                    </g>
+                    <g>
+                        <circle cx="240" cy="410" r="30" fill="#111A2E" stroke="#C5192D" stroke-width="1.6" />
+                        <text x="240" y="406" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Learners</text>
+                        <text x="240" y="420" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">GROWTH</text>
+                    </g>
+                    <g>
+                        <circle cx="70" cy="165" r="24" fill="#111A2E" stroke="#EFB246" stroke-width="1.4" />
+                        <text x="70" y="169" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="10" font-weight="600">Faculty</text>
+                    </g>
+                    <g>
+                        <circle cx="70" cy="315" r="24" fill="#111A2E" stroke="#C5192D" stroke-width="1.4" />
+                        <text x="70" y="319" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="10" font-weight="600">Society</text>
+                    </g>
+
+                    <circle cx="240" cy="240" r="44" fill="#070B14" stroke="#EDEFF5" stroke-width="1.6" filter="url(#ecoGlow)" />
+                    <text x="240" y="235" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="13" font-weight="700">SkillNet</text>
+                    <text x="240" y="251" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="9">ACADEMY</text>
+                </svg>
+                <div class="eco-svg-caption">live signal routing between all four pillars</div>
+            </div>
         </div>
-      </details>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
-</header>
+    </section>
 
-<section class="hero tech-bg" id="home" style="background-image: url('hero-banner.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(7,11,20,0.85);">
-  <div id="hero-canvas-wrap">
-    <canvas id="hero-canvas"></canvas>
-  </div>
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow on-dark">A foundation for ICT education</span>
-      <h1>Wiring the next mile of India's <em>digital</em> economy</h1>
-      <p class="lede">SkillNet Academy links learners, institutions, industry and government into one skilling network — designed around SDG&nbsp;4, SDG&nbsp;8 and SDG&nbsp;9, and built for the classrooms of Tier‑2 and Tier‑3 India.</p>
-      <div class="hero-actions">
-        <a href="#programs" class="btn btn-primary">Explore our programs</a>
-        <a href="#impact" class="btn btn-ghost-dark">See our impact →</a>
-      </div>
-      <div class="hero-tags">
-        <span class="tag-chip">INDUSTRY-CO-DESIGNED</span>
-        <span class="tag-chip">GOVT. + ACADEMIA + INDUSTRY</span>
-      </div>
-    </div>
-  </div>
-  <div class="hero-fade"></div>
-</section>
-
-<section class="sdg-strip">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Anchored to the Global Goals</span>
-      <h2>Four goals, one shared scoreboard</h2>
-      <p>Every program we run is designed against a specific, measurable global commitment — not just a mission statement.</p>
-    </div>
-    <div class="sdg-cards">
-      <div class="sdg-card" style="--accent:#C5192D; --accent-tint:#FCE9EC;">
-        <div class="sdg-card-top"></div>
-        <div class="sdg-card-body">
-          <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C5192D" stroke-width="1.7"><path d="M12 4L3 8l9 4 9-4-9-4z"/><path d="M7 10.5V16c0 1.4 2.3 2.5 5 2.5s5-1.1 5-2.5v-5.5"/><path d="M21 8v6"/></svg></span>
-          <span class="sdg-goalnum">GOAL 04</span>
-          <h4>Quality Education</h4>
-          <p>Inclusive, equitable ICT learning delivered inside classrooms that had none of it before.</p>
+    <section class="stories" id="stories">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">From the network</span>
+                <h2>Impact reads differently at ground level</h2>
+                <p>Three voices from inside the network — a placement officer, a first-generation learner, and a hiring partner.</p>
+            </div>
+            <div class="story-grid">
+                <div class="story-card">
+                    <p class="story-quote">"Our students used to graduate with a degree and a gap. Now the networking lab runs the same curriculum our hiring partners actually test for."</p>
+                    <div class="story-who">
+                        <div class="avatar-badge story-avatar" style="background:#19486A;">TP</div>
+                        <div><div class="name">Training &amp; Placement Officer</div><div class="role">Partner engineering college, West Bengal</div></div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <p class="story-quote">"I hadn't touched a Linux terminal before this program. Eight months later I was configuring routers for a live client project."</p>
+                    <div class="story-who">
+                        <div class="avatar-badge story-avatar" style="background:#A21942;">RK</div>
+                        <div><div class="name">First-generation learner</div><div class="role">Networking &amp; Cloud Foundations, Batch 2025</div></div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <p class="story-quote">"We stopped writing our own onboarding curriculum. SkillNet's cohorts already arrive fluent in what our floor actually needs."</p>
+                    <div class="story-who">
+                        <div class="avatar-badge story-avatar" style="background:#188F81;">HR</div>
+                        <div><div class="name">CSR &amp; Talent Partner</div><div class="role">Corporate hiring partner</div></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="sdg-card" style="--accent:#A21942; --accent-tint:#FBE7ED;">
-        <div class="sdg-card-top"></div>
-        <div class="sdg-card-body">
-          <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A21942" stroke-width="1.7"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M4 13h16"/></svg></span>
-          <span class="sdg-goalnum">GOAL 08</span>
-          <h4>Decent Work &amp; Growth</h4>
-          <p>Curricula built to a live hiring bar, so a certificate converts into an actual job.</p>
+    </section>
+
+    <section class="contact-band tech-bg" id="contact">
+        <div class="wrap contact-inner">
+            <div>
+                <span class="eyebrow on-dark">Contact</span>
+                <h2>Let's talk about where you fit into the network</h2>
+                <p>For colleges, state missions and employers who want to co-design an ICT track rather than outsource one.</p>
+                <div class="contact-actions">
+                    <a href="mailto:info@skillnetacademy.org" class="btn btn-primary">Email us</a>
+                </div>
+            </div>
+            <div class="contact-details">
+                <div class="contact-detail"><span class="lbl">Office</span><span class="val">HITEC City, Hyderabad, Telangana, India</span></div>
+                <div class="contact-detail"><span class="lbl">Email</span><span class="val">info@skillnetacademy.org</span></div>
+                <div class="contact-detail"><span class="lbl">General enquiries</span><span class="val">Send us a message or email directly</span></div>
+            </div>
         </div>
-      </div>
-      <div class="sdg-card" style="--accent:#FD9D24; --accent-tint:#FFF1DE;">
-        <div class="sdg-card-top"></div>
-        <div class="sdg-card-body">
-          <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B5720A" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></span>
-          <span class="sdg-goalnum">GOAL 09</span>
-          <h4>Industry &amp; Innovation</h4>
-          <p>Cloud, AI and networking labs bringing modern infrastructure into under-resourced campuses.</p>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <div class="foot-brand">SkillNet Academy</div>
+                    <div class="foot-tagline">Bridging classrooms to careers</div>
+                    <p style="max-width:30ch;">A foundation-led initiative building India's ICT-ready workforce through one connected skilling network.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>About</h5>
+                    <a href="#story">Our Story</a>
+                    <a href="#mission">Mission &amp; Vision</a>
+                    <a href="#leadership">Leadership</a>
+                    <a href="#governance">Governance</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Programs</h5>
+                    <a href="#prog-cloud">Cloud &amp; Networking</a>
+                    <a href="#prog-ai">AI &amp; Data</a>
+                    <a href="#prog-cyber">Cybersecurity</a>
+                    <a href="#prog-faculty">Faculty Development</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Get Involved</h5>
+                    <a href="#volunteer">Volunteer</a>
+                    <a href="#donate">Donate</a>
+                    <a href="#careers">Careers</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Contact</h5>
+                    <a href="#contact">HITEC City, Hyderabad, Telangana</a>
+                    <a href="mailto:info@skillnetacademy.org">info@skillnetacademy.org</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© 2026 SkillNet Academy Foundation. All rights reserved.</span>
+                <div class="foot-social">
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="#AEB4C4"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg></a>
+                    <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="#AEB4C4"><path d="M20 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 00-7 3.7A11.6 11.6 0 013 4.9a4.1 4.1 0 001.3 5.5c-.7 0-1.3-.2-1.9-.5v.1a4.1 4.1 0 003.3 4A4.2 4.2 0 014 14c.4 0 .8 0 1.1-.1a4.1 4.1 0 003.8 2.9A8.3 8.3 0 012 18.6a11.6 11.6 0 006.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg></a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="sdg-card" style="--accent:#19486A; --accent-tint:#E7EEF3;">
-        <div class="sdg-card-top"></div>
-        <div class="sdg-card-body">
-          <span class="sdg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#19486A" stroke-width="1.7"><path d="M8 12l-4 3.5M16 12l4 3.5"/><path d="M6 9.5a3 3 0 116 0 3 3 0 01-6 0zM12 9.5a3 3 0 116 0 3 3 0 01-6 0z"/><path d="M9 12.2c-1.6.5-3 1.6-3 3.3v1.5h6v-1.5c0-1.7-1.4-2.8-3-3.3zM15 12.2c1.6.5 3 1.6 3 3.3v1.5h-3"/></svg></span>
-          <span class="sdg-goalnum">GOAL 17</span>
-          <h4>Partnerships for the Goals</h4>
-          <p>No single actor can close the skills gap alone — the network exists to make that literal.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">About SkillNet Academy</span>
-      <h2>A foundation built to close one specific gap</h2>
-      <p>Four things worth knowing before you partner with us, volunteer, or send us your students.</p>
-    </div>
-    <div class="about-grid">
-      <div class="about-card" id="story">
-        <span class="idx">OUR STORY</span>
-        <h3>Where the network started</h3>
-        <p>SkillNet Academy began as a handful of weekend networking labs run out of borrowed classrooms, after one too many hiring partners asked why graduates couldn't do what their own coursework claimed. The network grew college by college, state by state, from that same premise: teach what the next job actually needs.</p>
-      </div>
-      <div class="about-card" id="mission">
-        <span class="idx">MISSION &amp; VISION</span>
-        <h3>What we're building toward</h3>
-        <p><strong>Mission:</strong> equip every learner we reach with ICT skills that convert directly into work or further study. <strong>Vision:</strong> an India where a student's postal code no longer predicts their access to a modern, industry-relevant education.</p>
-      </div>
-      <div class="about-card" id="leadership">
-        <span class="idx">LEADERSHIP</span>
-        <h3>Who runs the network</h3>
-        <p>A small team spanning CSR program delivery, industry-academia partnerships, and government skilling missions leads day-to-day operations, working directly with each partner institution's own faculty rather than around them.</p>
-      </div>
-      <div class="about-card" id="governance">
-        <span class="idx">GOVERNANCE</span>
-        <h3>How we stay accountable</h3>
-        <p>An independent board of trustees oversees the foundation's direction and finances, with regular third-party review of program outcomes and fund utilisation shared with every partner and donor.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <script>
+        // ---- counters ----
+        const counters = document.querySelectorAll('.impact-num');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    animateCount(e.target);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        counters.forEach(c => io.observe(c));
 
-<section class="impact tech-bg" id="impact">
-  <div class="wrap">
-    <div class="section-head on-dark">
-      <span class="eyebrow on-dark">Impact in numbers</span>
-      <h2>What the network has moved so far</h2>
-      <p>Every figure below is a partner institution that adopted a curriculum, or a learner who moved from a classroom into a live industry track.</p>
-    </div>
-    <div class="impact-grid" id="impact-dashboard">
-      <div class="impact-cell">
-        <div class="impact-num" data-target="20000" data-suffix="+">0</div>
-        <div class="impact-label">Learners reached</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-num" data-target="100" data-suffix="+">0</div>
-        <div class="impact-label">Partner education</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-num" data-target="15" data-suffix="">0</div>
-        <div class="impact-label">States &amp; union territories with active programs</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-num" data-target="71" data-suffix="%">0</div>
-        <div class="impact-label">Learners moving into jobs or higher study within a year</div>
-      </div>
-    </div>
-  </div>
-</section>
+        function animateCount(el) {
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            const dur = 1400;
+            const start = performance.now();
 
-<section class="programs" id="programs">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Programs</span>
-      <h2>ICT tracks built with employers, taught inside classrooms</h2>
-      <p>Ten tracks, each mapped to a live industry skill gap and co-owned with a partner institution's own faculty.</p>
-    </div>
-    <div class="program-grid">
-      <div class="program-card" id="prog-cloud">
-        <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="4.5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 6.5v6M9.5 15.5L6.5 17M14.5 15.5L17.5 17"/></svg></div>
-        <h3>Networking &amp; Cloud Foundations</h3>
-        <p>Routing, switching and cloud-infra basics aligned to globally recognised networking certification pathways.</p>
-        <span class="program-tag">CCNA-aligned</span>
-      </div>
-      <div class="program-card" id="prog-ai">
-        <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
-        <h3>AI &amp; Data Fundamentals</h3>
-        <p>From spreadsheets to models — data literacy, applied statistics, and a first working ML pipeline.</p>
-        <span class="program-tag">Industry live-projects</span>
-      </div>
-      <div class="program-card" id="prog-cyber">
-        <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
-        <h3>Cybersecurity Essentials</h3>
-        <p>Threat basics, safe systems design and a hands-on capture-the-flag track for early learners.</p>
-        <span class="program-tag">Hands-on labs</span>
-      </div>
-      <div class="program-card" id="prog-ict">
-        <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
-        <h3>Full-Stack &amp; App Development</h3>
-        <p>Web and mobile fundamentals through to a deployable capstone project, reviewed by hiring partners.</p>
-        <span class="program-tag">Capstone-graded</span>
-      </div>
-      <div class="program-card" id="prog-digital-literacy">
-        <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3>Digital Literacy Outreach</h3>
-        <p>Foundational digital skills for government-school students and first-generation learners in Tier‑3 towns.</p>
-        <span class="program-tag">Community-led</span>
-      </div>
-      <div class="program-card" id="prog-faculty">
-        <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><path d="M12 4l9 4-9 4-9-4 9-4z"/><path d="M5 10v5c0 1.5 3 3 7 3s7-1.5 7-3v-5"/></svg></div>
-        <h3>Educator &amp; Faculty Development</h3>
-        <p>Train-the-trainer programs so partner faculty can run and refresh the curriculum on their own.</p>
-        <span class="program-tag">Faculty-first</span>
-      </div>
-      <div class="program-card">
-        <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><rect x="7" y="4" width="10" height="7" rx="2"/><path d="M9 11v3M15 11v3M6 20h12M8 20v-3h8v3"/><circle cx="10" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/><circle cx="14" cy="7" r="0.8" fill="#8A5A0C" stroke="none"/></svg></div>
-        <h3>Robotics &amp; IoT</h3>
-        <p>Sensors, microcontrollers and connected devices, taught through build-it-yourself lab kits.</p>
-        <span class="program-tag">Lab-based</span>
-      </div>
-      <div class="program-card">
-        <div class="program-icon" style="background:#D8F3EF;"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6C61" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M9 16v4M15 16v4"/><path d="M6.5 13l3-3 2.5 2 4-5"/></svg></div>
-        <h3>Data Analytics &amp; Visualization</h3>
-        <p>Turning raw datasets into dashboards and decisions, using the tools employers run daily.</p>
-        <span class="program-tag">Portfolio-based</span>
-      </div>
-      <div class="program-card">
-        <div class="program-icon" style="background:#E6E9FA;"><svg viewBox="0 0 24 24" fill="none" stroke="#3B4AA0" stroke-width="1.6"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 12l2-4 2 3 2-5 2 6"/></svg></div>
-        <h3>UI/UX &amp; Product Design</h3>
-        <p>User research, wireframing and prototyping — designing the interfaces the other tracks build.</p>
-        <span class="program-tag">Studio-style</span>
-      </div>
-      <div class="program-card">
-        <div class="program-icon" style="background:#FCE9C9;"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A0C" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-        <h3>Career Readiness &amp; Employability</h3>
-        <p>Interview practice, resumes and workplace communication, run alongside every technical track.</p>
-        <span class="program-tag">Placement-focused</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ecosystem tech-bg" id="ecosystem">
-  <div class="wrap eco-grid">
-    <div class="eco-copy">
-      <span class="eyebrow on-dark">The linkage model</span>
-      <h2 style="font-size:clamp(1.7rem,3vw,2.3rem); margin-top:12px; max-width:15ch;">One network, four pillars, no dead ends</h2>
-      <p style="color:var(--text-light-soft); margin-top:14px; max-width:44ch;">SkillNet Academy doesn't sit beside the ecosystem — it's the connective layer inside it, routing demand signals from industry back into curriculum, and routing learners forward into placement.</p>
-      <div class="eco-list">
-        <div class="eco-item"><span class="eco-dot" style="background:#19486A;"></span><div><h4>Government</h4><p>Policy alignment with national skilling missions and state skill development corporations.</p></div></div>
-        <div class="eco-item"><span class="eco-dot" style="background:#EFB246;"></span><div><h4>Academia</h4><p>Colleges and universities that host labs, faculty, and credit-linked coursework.</p></div></div>
-        <div class="eco-item"><span class="eco-dot" style="background:#2BCBB4;"></span><div><h4>Industry</h4><p>Employers that shape curricula, run live projects, and hire directly from the network.</p></div></div>
-        <div class="eco-item"><span class="eco-dot" style="background:#C5192D;"></span><div><h4>Learners &amp; Educators</h4><p>Students and faculty whose progress data keeps every track current and job-relevant.</p></div></div>
-      </div>
-      <div class="eco-note">
-        <p><strong>How the matching works —</strong> learner progress, faculty feedback and employer skill demand all feed the same dashboard, so a curriculum gap surfaces in weeks, not admission cycles.</p>
-      </div>
-    </div>
-    <div id="eco-svg-wrap">
-      <svg viewBox="0 0 480 480" width="100%" id="eco-svg">
-        <defs>
-          <filter id="ecoGlow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="3.2" result="blur"/>
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        <g stroke="rgba(237,239,245,0.18)" stroke-width="1.4" fill="none">
-          <path d="M240 240 L240 70"/>
-          <path d="M240 240 L410 165"/>
-          <path d="M240 240 L410 315"/>
-          <path d="M240 240 L240 410"/>
-          <path d="M240 240 L70 165"/>
-          <path d="M240 240 L70 315"/>
-        </g>
-        <g filter="url(#ecoGlow)">
-          <circle r="3.2" fill="#19486A"><animateMotion dur="3.4s" repeatCount="indefinite" path="M240 240 L240 70"/></circle>
-          <circle r="3.2" fill="#EFB246"><animateMotion dur="4.1s" repeatCount="indefinite" path="M240 240 L410 165"/></circle>
-          <circle r="3.2" fill="#2BCBB4"><animateMotion dur="3.8s" repeatCount="indefinite" path="M240 240 L410 315"/></circle>
-          <circle r="3.2" fill="#C5192D"><animateMotion dur="3.2s" repeatCount="indefinite" path="M240 240 L240 410"/></circle>
-          <circle r="3.2" fill="#EFB246"><animateMotion dur="3.6s" repeatCount="indefinite" path="M240 240 L70 165"/></circle>
-          <circle r="3.2" fill="#C5192D"><animateMotion dur="3.9s" repeatCount="indefinite" path="M240 240 L70 315"/></circle>
-        </g>
-
-        <g>
-          <circle cx="240" cy="70" r="30" fill="#111A2E" stroke="#19486A" stroke-width="1.6"/>
-          <text x="240" y="66" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Govt.</text>
-          <text x="240" y="80" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">POLICY</text>
-        </g>
-        <g>
-          <circle cx="410" cy="165" r="30" fill="#111A2E" stroke="#EFB246" stroke-width="1.6"/>
-          <text x="410" y="161" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Academia</text>
-          <text x="410" y="175" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">CAMPUS</text>
-        </g>
-        <g>
-          <circle cx="410" cy="315" r="30" fill="#111A2E" stroke="#2BCBB4" stroke-width="1.6"/>
-          <text x="410" y="311" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Industry</text>
-          <text x="410" y="325" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">DEMAND</text>
-        </g>
-        <g>
-          <circle cx="240" cy="410" r="30" fill="#111A2E" stroke="#C5192D" stroke-width="1.6"/>
-          <text x="240" y="406" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="11" font-weight="600">Learners</text>
-          <text x="240" y="420" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="8">GROWTH</text>
-        </g>
-        <g>
-          <circle cx="70" cy="165" r="24" fill="#111A2E" stroke="#EFB246" stroke-width="1.4"/>
-          <text x="70" y="169" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="10" font-weight="600">Faculty</text>
-        </g>
-        <g>
-          <circle cx="70" cy="315" r="24" fill="#111A2E" stroke="#C5192D" stroke-width="1.4"/>
-          <text x="70" y="319" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="10" font-weight="600">Society</text>
-        </g>
-
-        <circle cx="240" cy="240" r="44" fill="#070B14" stroke="#EDEFF5" stroke-width="1.6" filter="url(#ecoGlow)"/>
-        <text x="240" y="235" text-anchor="middle" fill="#EDEFF5" font-family="Space Grotesk" font-size="13" font-weight="700">SkillNet</text>
-        <text x="240" y="251" text-anchor="middle" fill="#AEB4C4" font-family="IBM Plex Mono" font-size="9">ACADEMY</text>
-      </svg>
-      <div class="eco-svg-caption">live signal routing between all four pillars</div>
-    </div>
-  </div>
-</section>
-
-<section class="stories" id="stories">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">From the network</span>
-      <h2>Impact reads differently at ground level</h2>
-      <p>Three voices from inside the network — a placement officer, a first-generation learner, and a hiring partner.</p>
-    </div>
-    <div class="story-grid">
-      <div class="story-card">
-        <p class="story-quote">"Our students used to graduate with a degree and a gap. Now the networking lab runs the same curriculum our hiring partners actually test for."</p>
-        <div class="story-who">
-          <div class="avatar-badge story-avatar" style="background:#19486A;">TP</div>
-          <div><div class="name">Training &amp; Placement Officer</div><div class="role">Partner engineering college, West Bengal</div></div>
-        </div>
-      </div>
-      <div class="story-card">
-        <p class="story-quote">"I hadn't touched a Linux terminal before this program. Eight months later I was configuring routers for a live client project."</p>
-        <div class="story-who">
-          <div class="avatar-badge story-avatar" style="background:#A21942;">RK</div>
-          <div><div class="name">First-generation learner</div><div class="role">Networking &amp; Cloud Foundations, Batch 2025</div></div>
-        </div>
-      </div>
-      <div class="story-card">
-        <p class="story-quote">"We stopped writing our own onboarding curriculum. SkillNet's cohorts already arrive fluent in what our floor actually needs."</p>
-        <div class="story-who">
-          <div class="avatar-badge story-avatar" style="background:#188F81;">HR</div>
-          <div><div class="name">CSR &amp; Talent Partner</div><div class="role">Corporate hiring partner</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="partners" id="partners">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Who's in the network</span>
-      <h2>Built alongside, not in isolation</h2>
-    </div>
-    <div class="partner-cat-grid">
-      <div class="partner-cat" id="academic-partners">
-        <h4><span class="dot" style="background:#EFB246;"></span>Academic Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">AICTE-AFFILIATED ENGINEERING COLLEGES</span>
-          <span class="partner-chip">UNIVERSITY CAREER CENTRES</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="industry-partners">
-        <h4><span class="dot" style="background:#2BCBB4;"></span>Industry Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">GLOBAL TECH ALLIANCES</span>
-          <span class="partner-chip">CORPORATE HIRING PARTNERS</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="government-partners">
-        <h4><span class="dot" style="background:#19486A;"></span>Government</h4>
-        <div class="partner-row">
-          <span class="partner-chip">STATE SKILL MISSIONS</span>
-          <span class="partner-chip">DISTRICT SKILL COMMITTEES</span>
-        </div>
-      </div>
-      <div class="partner-cat" id="csr-partners">
-        <h4><span class="dot" style="background:#C5192D;"></span>CSR Partners</h4>
-        <div class="partner-row">
-          <span class="partner-chip">CORPORATE CSR FOUNDATIONS</span>
-          <span class="partner-chip">EMPLOYEE VOLUNTEERING PROGRAMS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<section class="contact-band tech-bg" id="contact">
-  <div class="wrap contact-inner">
-    <div>
-      <span class="eyebrow on-dark">Contact</span>
-      <h2>Let's talk about where you fit into the network</h2>
-      <p>For colleges, state missions and employers who want to co-design an ICT track rather than outsource one.</p>
-      <div class="contact-actions">
-        <a href="mailto:info@skillnetacademy.org" class="btn btn-primary">Email us</a>
-        
-      </div>
-    </div>
-    <div class="contact-details">
-      <div class="contact-detail"><span class="lbl">Office</span><span class="val">HITEC City, Hyderabad, Telangana, India</span></div>
-      <div class="contact-detail"><span class="lbl">Email</span><span class="val">info@skillnetacademy.org</span></div>
-      <div class="contact-detail"><span class="lbl">General enquiries</span><span class="val">Send us a message or email directly</span></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand">SkillNet Academy</div>
-        <div class="foot-tagline">Bridging classrooms to careers</div>
-        <p style="max-width:30ch;">A foundation-led initiative building India's ICT-ready workforce through one connected skilling network.</p>
-      </div>
-      <div class="foot-col">
-        <h5>About</h5>
-        <a href="#story">Our Story</a>
-        <a href="#mission">Mission &amp; Vision</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#governance">Governance</a>
-      </div>
-      <div class="foot-col">
-        <h5>Programs</h5>
-        <a href="#prog-cloud">Cloud &amp; Networking</a>
-        <a href="#prog-ai">AI &amp; Data</a>
-        <a href="#prog-cyber">Cybersecurity</a>
-        <a href="#prog-faculty">Faculty Development</a>
-      </div>
-      <div class="foot-col">
-        <h5>Get Involved</h5>
-        <a href="#volunteer">Volunteer</a>
-        <a href="#donate">Donate</a>
-        <a href="#careers">Careers</a>
-      </div>
-      <div class="foot-col">
-        <h5>Contact</h5>
-        <a href="#contact">HITEC City, Hyderabad, Telangana</a>
-        <a href="mailto:info@skillnetacademy.org">info@skillnetacademy.org</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 SkillNet Academy Foundation. All rights reserved.</span>
-      <div class="foot-social">
-        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="#AEB4C4"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg></a>
-        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="#AEB4C4"><path d="M20 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 00-7 3.7A11.6 11.6 0 013 4.9a4.1 4.1 0 001.3 5.5c-.7 0-1.3-.2-1.9-.5v.1a4.1 4.1 0 003.3 4A4.2 4.2 0 014 14c.4 0 .8 0 1.1-.1a4.1 4.1 0 003.8 2.9A8.3 8.3 0 012 18.6a11.6 11.6 0 006.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg></a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // ---- counters ----
-  const counters = document.querySelectorAll('.impact-num');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        animateCount(e.target);
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.4});
-  counters.forEach(c=>io.observe(c));
-
-  function animateCount(el){
-    const target = parseInt(el.dataset.target,10);
-    const suffix = el.dataset.suffix || '';
-    const dur = 1400;
-    const start = performance.now();
-    function step(now){
-      const p = Math.min((now-start)/dur, 1);
-      const eased = 1 - Math.pow(1-p, 3);
-      const val = Math.floor(eased*target);
-      el.textContent = val.toLocaleString('en-IN') + suffix;
-      if(p<1) requestAnimationFrame(step);
-      else el.textContent = target.toLocaleString('en-IN') + suffix;
-    }
-    requestAnimationFrame(step);
-  }
-
-  // ---- hero network canvas ----
-  const canvas = document.getElementById('hero-canvas');
-  const ctx = canvas.getContext('2d');
-  const wrap = document.getElementById('hero-canvas-wrap');
-  const heroSection = document.getElementById('home');
-  let W,H, nodes=[];
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mouse = { x:-9999, y:-9999, active:false };
-
-  function resize(){
-    W = wrap.clientWidth; H = wrap.clientHeight;
-    canvas.width = W * devicePixelRatio; canvas.height = H * devicePixelRatio;
-    canvas.style.width = W+'px'; canvas.style.height = H+'px';
-    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-  }
-  function makeNodes(){
-    nodes = [];
-    const count = W < 500 ? 24 : Math.min(64, Math.round((W*H)/11000));
-    for(let i=0;i<count;i++){
-      nodes.push({
-        x: Math.random()*W, y: Math.random()*H,
-        vx: (Math.random()-0.5)*0.22, vy:(Math.random()-0.5)*0.22,
-        r: Math.random()*1.6+1.2,
-        c: Math.random() > 0.6 ? '#EFB246' : (Math.random() > 0.5 ? '#2BCBB4' : '#EDEFF5')
-      });
-    }
-  }
-  // listen on the whole hero section (not just the canvas layer) so text,
-  // buttons and overlay gradients sitting above the canvas don't block tracking
-  heroSection.addEventListener('mousemove', (e)=>{
-    const rect = wrap.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-    mouse.active = true;
-  });
-  heroSection.addEventListener('mouseleave', ()=>{ mouse.active = false; mouse.x=-9999; mouse.y=-9999; });
-  heroSection.addEventListener('touchmove', (e)=>{
-    if(!e.touches || !e.touches[0]) return;
-    const rect = wrap.getBoundingClientRect();
-    mouse.x = e.touches[0].clientX - rect.left;
-    mouse.y = e.touches[0].clientY - rect.top;
-    mouse.active = true;
-  }, {passive:true});
-
-  function tick(){
-    ctx.clearRect(0,0,W,H);
-    const cursorReach = W < 500 ? 120 : 170;
-
-    nodes.forEach(n=>{
-      n.x += n.vx; n.y += n.vy;
-      if(n.x<0||n.x>W) n.vx*=-1;
-      if(n.y<0||n.y>H) n.vy*=-1;
-
-      if(mouse.active){
-        const dx = n.x - mouse.x, dy = n.y - mouse.y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if(d < cursorReach && d > 0.01){
-          const force = (1 - d/cursorReach) * 0.35;
-          n.x += (dx/d) * force;
-          n.y += (dy/d) * force;
+            function step(now) {
+                const p = Math.min((now - start) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                const val = Math.floor(eased * target);
+                el.textContent = val.toLocaleString('en-IN') + suffix;
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString('en-IN') + suffix;
+            }
+            requestAnimationFrame(step);
         }
-      }
-    });
 
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const a=nodes[i], b=nodes[j];
-        const dx=a.x-b.x, dy=a.y-b.y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        const maxD = W < 500 ? 95 : 130;
-        if(d < maxD){
-          ctx.strokeStyle = 'rgba(174,180,196,'+ (0.15*(1-d/maxD)) +')';
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        // ---- hero network canvas ----
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        const wrap = document.getElementById('hero-canvas-wrap');
+        const heroSection = document.getElementById('home');
+        let W, H, nodes = [];
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mouse = { x: -9999, y: -9999, active: false };
+
+        function resize() {
+            W = wrap.clientWidth;
+            H = wrap.clientHeight;
+            canvas.width = W * devicePixelRatio;
+            canvas.height = H * devicePixelRatio;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
         }
-      }
-    }
 
-    if(mouse.active){
-      nodes.forEach(n=>{
-        const dx = n.x - mouse.x, dy = n.y - mouse.y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if(d < cursorReach){
-          ctx.strokeStyle = 'rgba(229,169,60,'+ (0.5*(1-d/cursorReach)) +')';
-          ctx.lineWidth = 1.1;
-          ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke();
+        function makeNodes() {
+            nodes = [];
+            const count = W < 500 ? 24 : Math.min(64, Math.round((W * H) / 11000));
+            for (let i = 0; i < count; i++) {
+                nodes.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    vx: (Math.random() - 0.5) * 0.22,
+                    vy: (Math.random() - 0.5) * 0.22,
+                    r: Math.random() * 1.6 + 1.2,
+                    c: Math.random() > 0.6 ? '#EFB246' : (Math.random() > 0.5 ? '#2BCBB4' : '#EDEFF5')
+                });
+            }
         }
-      });
-      ctx.beginPath();
-      ctx.fillStyle = 'rgba(229,169,60,0.9)';
-      ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI*2);
-      ctx.fill();
-    }
+        // listen on the whole hero section (not just the canvas layer) so text,
+        // buttons and overlay gradients sitting above the canvas don't block tracking
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = wrap.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+            mouse.active = true;
+        });
+        heroSection.addEventListener('mouseleave', () => { mouse.active = false;
+            mouse.x = -9999;
+            mouse.y = -9999; });
+        heroSection.addEventListener('touchmove', (e) => {
+            if (!e.touches || !e.touches[0]) return;
+            const rect = wrap.getBoundingClientRect();
+            mouse.x = e.touches[0].clientX - rect.left;
+            mouse.y = e.touches[0].clientY - rect.top;
+            mouse.active = true;
+        }, { passive: true });
 
-    nodes.forEach(n=>{
-      ctx.beginPath();
-      ctx.fillStyle = n.c;
-      ctx.globalAlpha = 0.9;
-      ctx.shadowBlur = 7;
-      ctx.shadowColor = n.c;
-      ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-      ctx.globalAlpha = 1;
-    });
-    if(!reduceMotion) requestAnimationFrame(tick);
-  }
-  window.addEventListener('resize', ()=>{ resize(); makeNodes(); });
-  resize(); makeNodes();
-  if(!reduceMotion){ requestAnimationFrame(tick); } else {
-    ctx.clearRect(0,0,W,H);
-    nodes.forEach(n=>{ ctx.beginPath(); ctx.fillStyle=n.c; ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill(); });
-  }
+        function tick() {
+            ctx.clearRect(0, 0, W, H);
+            const cursorReach = W < 500 ? 120 : 170;
 
-  // close mobile menu when a link inside it is tapped
-  document.querySelectorAll('.mobile-nav a').forEach(a=>{
-    a.addEventListener('click', ()=>{ document.getElementById('navCheck').checked = false; });
-  });
-</script>
+            nodes.forEach(n => {
+                n.x += n.vx;
+                n.y += n.vy;
+                if (n.x < 0 || n.x > W) n.vx *= -1;
+                if (n.y < 0 || n.y > H) n.vy *= -1;
+
+                if (mouse.active) {
+                    const dx = n.x - mouse.x,
+                        dy = n.y - mouse.y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < cursorReach && d > 0.01) {
+                        const force = (1 - d / cursorReach) * 0.35;
+                        n.x += (dx / d) * force;
+                        n.y += (dy / d) * force;
+                    }
+                }
+            });
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const a = nodes[i],
+                        b = nodes[j];
+                    const dx = a.x - b.x,
+                        dy = a.y - b.y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    const maxD = W < 500 ? 95 : 130;
+                    if (d < maxD) {
+                        ctx.strokeStyle = 'rgba(174,180,196,' + (0.15 * (1 - d / maxD)) + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            if (mouse.active) {
+                nodes.forEach(n => {
+                    const dx = n.x - mouse.x,
+                        dy = n.y - mouse.y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < cursorReach) {
+                        ctx.strokeStyle = 'rgba(229,169,60,' + (0.5 * (1 - d / cursorReach)) + ')';
+                        ctx.lineWidth = 1.1;
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                });
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(229,169,60,0.9)';
+                ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            nodes.forEach(n => {
+                ctx.beginPath();
+                ctx.fillStyle = n.c;
+                ctx.globalAlpha = 0.9;
+                ctx.shadowBlur = 7;
+                ctx.shadowColor = n.c;
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            });
+            if (!reduceMotion) requestAnimationFrame(tick);
+        }
+        window.addEventListener('resize', () => { resize();
+            makeNodes(); });
+        resize();
+        makeNodes();
+        if (!reduceMotion) { requestAnimationFrame(tick); } else {
+            ctx.clearRect(0, 0, W, H);
+            nodes.forEach(n => { ctx.beginPath();
+                ctx.fillStyle = n.c;
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fill(); });
+        }
+
+        // close mobile menu when a link inside it is tapped
+        document.querySelectorAll('.mobile-nav a').forEach(a => {
+            a.addEventListener('click', () => { document.getElementById('navCheck').checked = false; });
+        });
+    </script>
 
 </body>
 </html>
