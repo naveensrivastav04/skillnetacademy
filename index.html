@@ -306,12 +306,17 @@ footer #hc{z-index:0;opacity:.7}
 .band p{color:#dbe5ff;max-width:560px;margin:0 auto 26px}
 .meta{margin-top:26px;color:var(--mut);font-size:15px;text-align:center}
 footer{position:relative;overflow:hidden;background:var(--ink);color:#c3cde0;padding:56px 0 28px;font-size:14px}
-footer .grid{grid-template-columns:2fr 1fr 1fr 1.4fr 1fr}
+footer .grid{grid-template-columns:2fr 1fr 1fr 1.4fr}
 .fb{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:#fff;font:700 19px/1.1 Manrope,Inter,system-ui,sans-serif}
 .fb small{display:block;margin-top:3px;font:400 11px Inter,sans-serif;color:var(--el2);letter-spacing:.04em}
 footer h5{color:#fff;font:600 14px Manrope,sans-serif;margin:0 0 12px}
 footer a{display:block;padding:3px 0}footer a:hover{color:#fff}
 .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:36px;padding-top:20px;text-align:center}
+.copy{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 26px}
+.ll{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:8px 22px}
+.copy .ll a{display:inline;padding:0;position:relative}
+.copy .ll a:hover{color:#fff;text-decoration:underline}
+.copy .ll a+a::before{content:"";position:absolute;left:-12px;top:50%;width:1px;height:12px;background:rgba(255,255,255,.3);transform:translateY(-50%)}
 @media(max-width:900px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}footer .grid{grid-template-columns:1fr 1fr}}
 @media(max-width:820px){
  .burger{display:block}
@@ -398,12 +403,11 @@ footer a{display:block;padding:3px 0}footer a:hover{color:#fff}
 
 <section id="stories">
  <div class="w">
-  <div class="sec-h"><div class="eyebrow">From the network</div><h2>Impact reads differently at ground level</h2><p>Three voices from inside the network — a placement officer, a first-generation learner, and a hiring partner.</p></div>
-  <div class="grid g3">
+  <div class="sec-h"><div class="eyebrow">From the network</div><h2>Impact reads differently at ground level</h2><p>Voices from inside the network — a placement officer and a first-generation learner.</p></div>
+  <div class="grid g2" style="max-width:860px;margin:0 auto">
    <div class="card"><p class="q">"Our students used to graduate with a degree and a gap. Now the networking lab runs the same curriculum our hiring partners actually test for."</p><div class="who"><div class="av">TP</div><div>Training &amp; Placement Officer<small>Partner engineering college, West Bengal</small></div></div></div>
    <div class="card"><p class="q">"I hadn't touched a Linux terminal before this program. Eight months later I was configuring routers for a live client project."</p><div class="who"><div class="av">RK</div><div>First-generation learner<small>Networking &amp; Cloud Foundations, Batch 2025</small></div></div></div>
-   <div class="card"><p class="q">"We stopped writing our own onboarding curriculum. SkillNet's cohorts already arrive fluent in what our floor actually needs."</p><div class="who"><div class="av">HR</div><div>CSR &amp; Talent Partner<small>Corporate hiring partner</small></div></div></div>
-  </div>
+</div>
  </div>
 </section>
 
@@ -655,9 +659,8 @@ footer a{display:block;padding:3px 0}footer a:hover{color:#fff}
    <div><h5>Programs</h5><a href="#/programs">Networking</a><a href="#/programs">Cybersecurity</a><a href="#/programs">AI &amp; Data Science</a><a href="#/programs">Cloud</a><a href="#/programs">Digital Skills</a><a href="#/programs">Career Readiness</a></div>
    
    <div><h5>Contact</h5><a href="#/contact">HITEC City, Hyderabad, Telangana</a><a href="mailto:info@skillnetacademy.org">info@skillnetacademy.org</a></div>
-   <div><h5>Legal</h5><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms of Use</a><a href="#/disclaimer">Disclaimer</a></div>
   </div>
-  <div class="copy">© 2026 SkillNet Academy. All rights reserved.</div>
+  <div class="copy"><span>© 2026 SkillNet Academy. All rights reserved.</span><span class="ll"><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms of Use</a><a href="#/disclaimer">Disclaimer</a></span></div>
  </div>
 </footer>
 
